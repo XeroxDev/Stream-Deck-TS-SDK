@@ -1,0 +1,21 @@
+{
+  "name": "streamdeck-ts-sdk",
+  "version": "1.0.0",
+  "description": "This library will help you build elgato stream deck plugins in typescript",
+  "main": "dist/example-plugin.js",
+  "scripts": {
+    "watch": "tsc -p tsconfig.json -w",
+    "browserify": "browserify dist/example/counter.js > dist/bundle.js && browserify dist/example/counter-pi.js > dist/bundle-pi.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "XeroxDev",
+  "license": "GNU GPLv3",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "typescript": "^4.1.5",
+    "@tsconfig/recommended": "^1.0.1",
+    "browserify": "^17.0.0"
+  }
+}

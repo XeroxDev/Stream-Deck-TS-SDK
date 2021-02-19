@@ -1,0 +1,43 @@
+{
+  "Name": "Test Plugin",
+  "Author": "XeroxDev",
+  "Description": "Test Plugin",
+  "URL": "https://github.com/XeroxDev/YTMD-StreamDeck",
+  "Icon": "icons/pluginIcon",
+  "Version": "1.0.0",
+  "Category": "Test Plugin",
+  "CategoryIcon": "icons/category-icon",
+  "SDKVersion": 2,
+  "Software":
+  {
+    "MinimumVersion" : "4.9"
+  },
+  "OS": [
+    {
+      "Platform": "mac",
+      "MinimumVersion": "10.11"
+    },
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "Actions": [
+  {
+    "Icon": "icons/actionIcon",
+    "Name": "Counter",
+    "States": [
+      {
+        "Image": "icons/actionDefaultImage",
+        "TitleAlignment": "middle",
+        "FontSize": "16"
+      }
+    ],
+    "SupportedInMultiActions": false,
+    "Tooltip": "How many times did you get pwned today? Keep track with this counter.",
+    "UUID": "fun.shiro.counter.action"
+  }
+],
+  "CodePath": "plugin.html",
+  "PropertyInspectorPath": "property-inspector.html"
+}
