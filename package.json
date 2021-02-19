@@ -1,21 +1,39 @@
 {
-  "name": "streamdeck-ts-sdk",
+  "name": "streamdeck-typescript",
   "version": "1.0.0",
   "description": "This library will help you build elgato stream deck plugins in typescript",
-  "main": "dist/example-plugin.js",
+  "homepage": "https://github.com/XeroxDev/Stream-Deck-TS-SDK",
+  "license": "GNU GPLv3",
+  "author": {
+    "email": "help@xeroxdev.de",
+    "name": "Dominic 'XeroxDev' Ris",
+    "url": "https://github.com/XeroxDev"
+  },
+  "bugs": {
+    "url": "https://github.com/XeroxDev/Stream-Deck-TS-SDK/issues",
+    "email": "help@xeroxdev.de"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/XeroxDev/Stream-Deck-TS-SDK.git"
+  },
+  "keywords": [
+    "Stream Deck",
+    "Elgato",
+    "TypeScript",
+    "Library"
+  ],
   "scripts": {
     "watch": "tsc -p tsconfig.json -w",
     "browserify": "browserify dist/example/counter.js > dist/bundle.js && browserify dist/example/counter-pi.js > dist/bundle-pi.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "XeroxDev",
-  "license": "GNU GPLv3",
+  "private": false,
   "dependencies": {
+    "typescript": "^4.1.5",
+    "browserify": "^17.0.0"
   },
   "devDependencies": {
-    "typescript": "^4.1.5",
-    "@tsconfig/recommended": "^1.0.1",
-    "browserify": "^17.0.0"
+    "@tsconfig/recommended": "^1.0.1"
   }
 }

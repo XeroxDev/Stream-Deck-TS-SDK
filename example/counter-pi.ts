@@ -5,6 +5,7 @@ import {SDInit} from "../src/decorators/methods/init.decorator";
 import {StreamDeckPlugin} from "../src/stream-deck-plugin";
 import {DidReceiveSettingsEvent} from "../src/interfaces/events/settings/did-receive-settings.event";
 
+// Automatically initializes the StreamDeckPlugin wrapper in the PI context, so you just need to import one file.
 @SDPropertyInspector
 class CounterPi {
 	private plugin: StreamDeckPlugin;
@@ -12,11 +13,13 @@ class CounterPi {
 	private stepsCount: HTMLInputElement;
 	private saveButton: HTMLButtonElement;
 
+	// Calls method after initialization process is done and overhands the StreamDeckPlugin instance
 	@SDInit()
 	private initialize(plugin: StreamDeckPlugin) {
 		this.plugin = plugin;
 	}
 
+	// Calls method after connection and dom is ready
 	@SDReady()
 	private ready() {
 		this.count = document.getElementById('count') as HTMLInputElement
@@ -28,6 +31,8 @@ class CounterPi {
 		this.plugin.requestSettings();
 	}
 
+	// Gets for all actions called but only if the didReceiveSettings event is triggered
+	// Like all other events, this will overhands the specific event data (Here: DidReceiveSettingsEvent)
 	@SDOnEvent('didReceiveSettings')
 	private settingsHandler({payload: {settings}}: DidReceiveSettingsEvent) {
 		this.count.value = settings.count ?? 0;
@@ -35,4 +40,5 @@ class CounterPi {
 	}
 }
 
+// Starts the property inspector class
 new CounterPi();

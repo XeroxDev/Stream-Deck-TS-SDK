@@ -2,7 +2,7 @@
   "Name": "Test Plugin",
   "Author": "XeroxDev",
   "Description": "Test Plugin",
-  "URL": "https://github.com/XeroxDev/YTMD-StreamDeck",
+  "URL": "https://github.com/XeroxDev/Stream-Deck-TS-SDK",
   "Icon": "icons/pluginIcon",
   "Version": "1.0.0",
   "Category": "Test Plugin",
