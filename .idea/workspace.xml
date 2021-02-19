@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6298471a-0d46-4867-8a6a-299eeb433fc0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/decorators/decorator-declarations.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/events/event-declarations.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/interface-declarations.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +70,7 @@
       <recent name="C:\Users\domin\AppData\Roaming\Elgato\StreamDeck\Plugins\fun.shiro.ts-sdk.sdPlugin\src\interfaces\events\keys" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.watch">
+  <component name="RunManager" selected="npm.build">
     <configuration name="browserify" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -107,9 +103,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.build" />
         <item itemvalue="npm.browserify" />
         <item itemvalue="npm.watch" />
-        <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
   </component>
@@ -126,7 +122,7 @@
       <workItem from="1613551227160" duration="34058000" />
       <workItem from="1613656778409" duration="18606000" />
       <workItem from="1613744798209" duration="6341000" />
-      <workItem from="1613754378072" duration="1521000" />
+      <workItem from="1613754378072" duration="1882000" />
     </task>
     <servers />
   </component>

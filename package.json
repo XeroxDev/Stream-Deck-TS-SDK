@@ -4,8 +4,8 @@
   "description": "This library will help you build elgato stream deck plugins in typescript",
   "homepage": "https://github.com/XeroxDev/Stream-Deck-TS-SDK",
   "license": "GNU GPLv3",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "author": {
     "email": "help@xeroxdev.de",
     "name": "Dominic 'XeroxDev' Ris",
@@ -27,6 +27,7 @@
   ],
   "scripts": {
     "watch": "tsc -p tsconfig.json -w",
+    "build": "tsc -p tsconfig.json",
     "browserify": "browserify dist/example/counter.js > dist/bundle.js && browserify dist/example/counter-pi.js > dist/bundle-pi.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
