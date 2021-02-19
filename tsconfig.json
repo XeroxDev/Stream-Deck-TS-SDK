@@ -5,11 +5,12 @@
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
+    "declaration": true,
     "sourceMap": false,
     "forceConsistentCasingInFileNames": true,
     "strictPropertyInitialization": false,
     "skipLibCheck": true,
-    "outDir": "dist",
+    "outDir": "./dist",
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "lib": [

@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6298471a-0d46-4867-8a6a-299eeb433fc0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/decorators/decorator-declarations.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/events/event-declarations.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/interface-declarations.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/counter-pi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/example/counter-pi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/counter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/example/counter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +45,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.18.3" />
     <property name="javascript.nodejs.core.library.typings.version" value="12.20.1" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/decorators/classes" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -56,7 +55,7 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="copyright" />
-    <property name="ts.external.directory.path" value="C:\Users\domin\AppData\Roaming\Elgato\StreamDeck\Plugins\fun.shiro.ts-sdk.sdPlugin\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\Users\domin\AppData\Local\JetBrains\Toolbox\apps\WebStorm\ch-0\203.6682.155\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -68,11 +67,11 @@
       <recent name="C:\Users\domin\AppData\Roaming\Elgato\StreamDeck\Plugins\fun.shiro.ts-sdk.sdPlugin\src\interfaces\events" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Dominic\development\git-repositories\Stream-Deck-TS-SDK\src" />
       <recent name="C:\Users\domin\AppData\Roaming\Elgato\StreamDeck\Plugins\fun.shiro.ts-sdk.sdPlugin\src\decorators\methods" />
       <recent name="C:\Users\domin\AppData\Roaming\Elgato\StreamDeck\Plugins\fun.shiro.ts-sdk.sdPlugin\icons" />
       <recent name="C:\Users\domin\AppData\Roaming\Elgato\StreamDeck\Plugins\fun.shiro.ts-sdk.sdPlugin\src\interfaces\events\base" />
       <recent name="C:\Users\domin\AppData\Roaming\Elgato\StreamDeck\Plugins\fun.shiro.ts-sdk.sdPlugin\src\interfaces\events\keys" />
-      <recent name="C:\Users\domin\AppData\Roaming\Elgato\StreamDeck\Plugins\fun.shiro.ts-sdk.sdPlugin\src\interfaces\events\settings" />
     </key>
   </component>
   <component name="RunManager" selected="npm.watch">
@@ -127,6 +126,7 @@
       <workItem from="1613551227160" duration="34058000" />
       <workItem from="1613656778409" duration="18606000" />
       <workItem from="1613744798209" duration="6341000" />
+      <workItem from="1613754378072" duration="1521000" />
     </task>
     <servers />
   </component>
