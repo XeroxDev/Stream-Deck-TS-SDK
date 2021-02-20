@@ -253,7 +253,7 @@ export class StreamDeckPlugin {
 	 * @param {StateType} state
 	 */
 	public setState(state: StateType) {
-		this.send('showOk', {
+		this.send('setState', {
 			context: this.getContext(),
 			payload: {state}
 		});

@@ -156,7 +156,7 @@ class StreamDeckPlugin {
         this.send('showOk', { context: this.getContext() });
     }
     setState(state) {
-        this.send('showOk', {
+        this.send('setState', {
             context: this.getContext(),
             payload: { state }
         });
