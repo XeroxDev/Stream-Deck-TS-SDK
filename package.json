@@ -3,7 +3,7 @@
   "version": "1.0.3",
   "description": "This library will help you build elgato stream deck plugins in typescript",
   "homepage": "https://github.com/XeroxDev/Stream-Deck-TS-SDK",
-  "license": "GNU GPLv3",
+  "license": "MIT",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "author": {
