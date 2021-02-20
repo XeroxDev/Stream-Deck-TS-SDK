@@ -1,3 +1,21 @@
+[![Forks](https://img.shields.io/github/forks/XeroxDev/Stream-Deck-TS-SDK?color=blue&style=for-the-badge)](https://github.com/XeroxDev/Stream-Deck-TS-SDK/network/members)
+[![Stars](https://img.shields.io/github/stars/XeroxDev/Stream-Deck-TS-SDK?color=yellow&style=for-the-badge)](https://github.com/XeroxDev/Stream-Deck-TS-SDK/stargazers)
+[![Watchers](https://img.shields.io/github/watchers/XeroxDev/Stream-Deck-TS-SDK?color=lightgray&style=for-the-badge)](https://github.com/XeroxDev/Stream-Deck-TS-SDK/watchers)
+[![Contributors](https://img.shields.io/github/contributors/XeroxDev/Stream-Deck-TS-SDK?color=green&style=for-the-badge)](https://github.com/XeroxDev/Stream-Deck-TS-SDK/graphs/contributors)
+
+[![Issues](https://img.shields.io/github/issues/XeroxDev/Stream-Deck-TS-SDK?color=yellow&style=for-the-badge)](https://github.com/XeroxDev/Stream-Deck-TS-SDK/issues)
+[![Issues closed](https://img.shields.io/github/issues-closed/XeroxDev/Stream-Deck-TS-SDK?color=yellow&style=for-the-badge)](https://github.com/XeroxDev/Stream-Deck-TS-SDK/issues?q=is%3Aissue+is%3Aclosed)
+
+[![Issues-pr](https://img.shields.io/github/issues-pr/XeroxDev/Stream-Deck-TS-SDK?color=yellow&style=for-the-badge)](https://github.com/XeroxDev/Stream-Deck-TS-SDK/pulls)
+[![Issues-pr closed](https://img.shields.io/github/issues-pr-closed/XeroxDev/Stream-Deck-TS-SDK?color=yellow&style=for-the-badge)](https://github.com/XeroxDev/Stream-Deck-TS-SDK/pulls?q=is%3Apr+is%3Aclosed)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare)
+
+![Sonar Quality Gate](https://img.shields.io/sonar/quality_gate/XeroxDev_Stream-Deck-TS-SDK?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)
+![npm](https://img.shields.io/npm/dt/streamdeck-typescript?style=for-the-badge&logo=npm)
+
+[![GitHub license](https://img.shields.io/github/license/XeroxDev/Stream-Deck-TS-SDK?style=for-the-badge)](https://github.com/XeroxDev/Stream-Deck-TS-SDK/blob/master/LICENSE)
+[![Awesome Badges](https://img.shields.io/badge/badges-awesome-green?style=for-the-badge)](https://shields.io)
+
 # Stream Deck TS-SDK
 
 A library that helps you develop plugins for Elgato's Stream Deck.
