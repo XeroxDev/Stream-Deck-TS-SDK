@@ -34,22 +34,19 @@ This Plugin adds a few decorators for classes and methods.
 
 ### Available decorators
 
-- classes
-    - ``@SDDebug`` - Enabled debug mode. This will enabled console.log for events sent and received
-    - ``@SDPlugin`` - Automatically initializes the StreamDeckPlugin wrapper in the plugin context, so you just need to
-      import one file.
-    - ``@SDPropertyInspector`` - Automatically initializes the StreamDeckPlugin wrapper in the Property Inspector
-      context, so you just need to import one file.
 - methods
     - ``@SDInit()`` - Calls method after initialization process is done
         - Overhands StreamDeckPlugin instance as parameter
-    - ``@SDOnEvent(event, actionName?)`` - Listens for specified event and if triggered, calls method
+    - ``@SDOnPiEvent(event, actionName?)`` - Listens for specified event in the property inspector context and if 
+      triggered, calls method
         - Overhands EventData (\*NameOfEvent\*Event; Example: KeyDownEvent, KeyUpEvent, WillAppearEvent)
-    - ``@SDReady()`` - Calls method after connection and dom is ready
+    - ``@SDOnActionEvent(event)`` - Listens for specified event in the action context and if triggered, calls method
+        - Overhands EventData (\*NameOfEvent\*Event; Example: KeyDownEvent, KeyUpEvent, WillAppearEvent)
 
 ## Usage
 
-You can see an example in the ``example`` folder
+You can see an example in the [example](https://github.com/XeroxDev/Stream-Deck-TS-SDK/tree/master/example) folder 
+or look through the [repository wiki](https://github.com/XeroxDev/Stream-Deck-TS-SDK/wiki)
 
 ### Initializing Plugin
 Elgato uses 2 different files. The Action file (which handels all actions), and the Property Inspector file (which is 
@@ -57,63 +54,19 @@ for settings)
 
 #### counter.ts
 ```typescript
-// All imports
-import {SDPlugin} from "../src/decorators/classes/plugin.decorator";
-import {SDInit} from "../src/decorators/methods/init.decorator";
+import {StreamDeckPluginHandler} from "../src/abstracts/stream-deck-plugin-handler";
 import {CounterAction} from "./actions/counter.action";
-import {SDOnEvent} from "../src/decorators/methods/on-event.decorator";
-import {WillAppearEvent} from "../src/interfaces/events/appearance/will-appear.event";
-import {KeyUpEvent} from "../src/interfaces/events/keys/key-up.event";
-import {DidReceiveSettingsEvent} from "../src/interfaces/events/settings/did-receive-settings.event";
-import {StreamDeckPlugin} from "../src/stream-deck-plugin";
 
-// Automatically initializes the StreamDeckPlugin wrapper in the plugin context, so you just need to import one file.
-@SDPlugin
-class Counter {
-	private plugin: StreamDeckPlugin;
-	private counters: { action: CounterAction, id: string }[];
-
-	// Calls the initialize method after initialization process is done and overhands the StreamDeckPlugin instance
-	@SDInit()
-	private initialize(plugin: StreamDeckPlugin) {
-		this.plugin = plugin;
-		this.counters = [];
-	}
-
-	// Gets only for the 'fun.shiro.counter.action' action called and only if the willAppear event is triggered
-	// Like all other events, this will overhands the specific event data (Here: WillAppearEvent)
-	@SDOnEvent('willAppear', 'fun.shiro.counter.action')
-	private createCounter({context, payload: {settings}}: WillAppearEvent) {
-		const found = this.counters.find(value => value.id === context);
-
-		if (!found)
-			this.counters.push({id: context, action: new CounterAction(settings.currentCount ?? settings.startCount)});
-	}
-
-	// Gets only for the 'fun.shiro.counter.action' action called and only if the keyUp event is triggered
-	// Like all other events, this will overhands the specific event data (Here: KeyUpEvent)
-	@SDOnEvent('keyUp', 'fun.shiro.counter.action')
-	private pressCounter({context}: KeyUpEvent) {
-		const found = this.counters.find(value => value.id === context);
-		if (!found)
-			return;
-
-		found.action.countUp();
-	}
-
-	// Gets for all actions called but only if the didReceiveSettings event is triggered
-	// Like all other events, this will overhands the specific event data (Here: DidReceiveSettingsEvent)
-	@SDOnEvent('didReceiveSettings')
-	private settingsReceived(settings: DidReceiveSettingsEvent) {
-		const found = this.counters.find(value => value.id === settings.context);
-		if (!found)
-			return;
-
-		found.action.setSettings(settings.payload.settings.count, settings.payload.settings.steps);
+// Extends StreamDeckPluginHandler for easier use of theElgato Api
+export class Counter extends StreamDeckPluginHandler {
+	constructor() {
+		super();
+		// Create counter action
+		new CounterAction(this, 'fun.shiro.counter.action');
 	}
 }
 
-// Start the plugin
+// Initialize Plugin
 new Counter();
 ```
 
@@ -134,49 +87,41 @@ Here you can see. After the build you have only one file (bundle.js in this case
 
 #### counter-pi.ts
 ```typescript
-import {SDPropertyInspector} from "../src/decorators/classes/property-inspector.decorator";
-import {SDOnEvent} from "../src/decorators/methods/on-event.decorator";
-import {SDReady} from "../src/decorators/methods/ready.decorator";
-import {SDInit} from "../src/decorators/methods/init.decorator";
-import {StreamDeckPlugin} from "../src/stream-deck-plugin";
+import {StreamDeckPropertyInspectorHandler} from "../src/abstracts/stream-deck-property-inspector-handler";
+import {SettingsInterface} from "./interfaces/settings.interface";
 import {DidReceiveSettingsEvent} from "../src/interfaces/events/settings/did-receive-settings.event";
+import {SDOnPiEvent} from "../src/decorators/on-pi-event.decorator";
 
-// Automatically initializes the StreamDeckPlugin wrapper in the PI context, so you just need to import one file.
-@SDPropertyInspector
-class CounterPi {
-	private plugin: StreamDeckPlugin;
+// Extends StreamDeckPropertyInspectorHandler for easier communication with the elgato pi api
+class CounterPi extends StreamDeckPropertyInspectorHandler {
 	private count: HTMLInputElement;
 	private stepsCount: HTMLInputElement;
 	private saveButton: HTMLButtonElement;
 
-	// Calls method after initialization process is done and overhands the StreamDeckPlugin instance
-	@SDInit()
-	private initialize(plugin: StreamDeckPlugin) {
-		this.plugin = plugin;
-	}
-
-	// Calls method after connection and dom is ready
-	@SDReady()
-	private ready() {
+	// Gets called after connection is established and DOM ready loaded
+	protected onReady() {
 		this.count = document.getElementById('count') as HTMLInputElement
 		this.stepsCount = document.getElementById('steps') as HTMLInputElement;
 		this.saveButton = document.getElementById('save') as HTMLButtonElement;
 		this.saveButton.onclick = () => {
-			this.plugin.setSettings({count: this.count.valueAsNumber, steps: this.stepsCount.valueAsNumber});
+			this.setSettings<SettingsInterface>({count: this.count.valueAsNumber, steps: this.stepsCount.valueAsNumber});
 		}
-		this.plugin.requestSettings();
+
+		this.count.value = this.settings.count ?? 0;
+		this.stepsCount.value = this.settings.steps ?? 1;
 	}
 
-	// Gets for all actions called but only if the didReceiveSettings event is triggered
-	// Like all other events, this will overhands the specific event data (Here: DidReceiveSettingsEvent)
-	@SDOnEvent('didReceiveSettings')
-	private settingsHandler({payload: {settings}}: DidReceiveSettingsEvent) {
-		this.count.value = settings.count ?? 0;
-		this.stepsCount.value = settings.steps ?? 1;
+	// Listens to the didReceiveSettings Event
+	@SDOnPiEvent('didReceiveSettings')
+	private onSettingsReceived({payload: {settings}}: DidReceiveSettingsEvent<SettingsInterface>) {
+		if (!settings)
+			return;
+
+		this.count.value = settings.count.toString();
+		this.stepsCount.value = settings.steps.toString();
 	}
 }
 
-// Starts the property inspector class
 new CounterPi();
 ```
 
@@ -208,8 +153,69 @@ new CounterPi();
 </html>
 ```
 
+```typescript
+import {StreamDeckAction} from "../../src/abstracts/stream-deck-action";
+import {Counter} from "../counter";
+import {SDOnActionEvent} from "../../src/decorators/on-action-event.decorator";
+import {WillAppearEvent} from "../../src/interfaces/events/appearance/will-appear.event";
+import {SettingsInterface} from "../interfaces/settings.interface";
+import {KeyUpEvent} from "../../src/interfaces/events/keys/key-up.event";
+import {DidReceiveSettingsEvent} from "../../src/interfaces/events/settings/did-receive-settings.event";
+import {KeyDownEvent} from "../../src/interfaces/events/keys/key-down.event";
+
+// extends StreamDeckAction for easier use with the context handling
+export class CounterAction extends StreamDeckAction<Counter, CounterAction> {
+	private keyUpTimer: any;
+
+	// Plugin and action name are default parameters for the constructor
+	constructor(private plugin: Counter, private actionName: string) {
+		super(plugin, actionName);
+	}
+
+	// Listens to the willAppear event
+	@SDOnActionEvent('willAppear')
+	private onAppear({context, payload: {settings}}: WillAppearEvent<SettingsInterface>) {
+		if (!settings)
+			return
+		this.plugin.setTitle((settings.count ?? 0).toString(), context);
+	}
+
+	// Listens to the keyUp event
+	@SDOnActionEvent('keyUp')
+	private onKeyUp({context, payload: {settings}}: KeyUpEvent<SettingsInterface>) {
+		clearTimeout(this.keyUpTimer);
+		const steps = settings.steps ?? 1
+		const count = settings.count + steps ?? 0;
+		this.plugin.setTitle(count.toString(), context);
+		this.plugin.setSettings<SettingsInterface>({steps, count}, context);
+	}
+
+	// Listens to the keyDown event
+	@SDOnActionEvent('keyDown')
+	private onKeyDown({context, payload: {settings}}: KeyDownEvent<SettingsInterface>) {
+		this.keyUpTimer = setTimeout(() => {
+			const steps = settings.steps ?? 1;
+			this.plugin.setSettings<SettingsInterface>({
+				steps,
+				count: steps * -1
+			}, context);
+			this.plugin.setTitle('0', context);
+		}, 2000);
+	}
+
+	// Listens to the didReceiveSettings event
+	@SDOnActionEvent('didReceiveSettings')
+	private onSettings({context, payload: {settings}}: DidReceiveSettingsEvent<SettingsInterface>) {
+		this.plugin.setTitle(settings.count.toString() ?? 0, context);
+	}
+}
+```
+
 ## Building the Plugin
-I would suggest you to do it like in the example with tsc and browserify. See **package.json** and **tsconfig.json**
+I would suggest you to do it like in the example with tsc and browserify. 
+See [**package.json**](https://github.com/XeroxDev/Stream-Deck-TS-SDK/blob/master/package.json) 
+and [**tsconfig.json**](https://github.com/XeroxDev/Stream-Deck-TS-SDK/blob/master/tsconfig.json)
+
 ```json
 ...
 "scripts": {
