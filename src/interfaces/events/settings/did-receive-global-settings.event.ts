@@ -1,6 +1,6 @@
-export interface DidReceiveGlobalSettingsEvent {
+export interface DidReceiveGlobalSettingsEvent<Settings = any> {
 	event: 'didReceiveGlobalSettings',
 	payload: {
-		settings: any
+		settings: Settings
 	}
 }

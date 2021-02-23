@@ -1,9 +1,11 @@
-export interface InitEvent {
+export interface InitBase {
     port: string;
     uuid: string;
     registerEvent: string;
     info: InitEventInfo;
-    actionInfo?: InitEventActionInfo;
+}
+export interface InitPi<Settings = any> extends InitBase {
+    actionInfo: InitEventActionInfo<Settings>;
 }
 export interface InitEventInfo {
     application: InitEventInfoApplication;
@@ -29,14 +31,14 @@ export interface InitEventInfoDeviceSize {
     columns: number;
     rows: number;
 }
-export interface InitEventActionInfo {
+export interface InitEventActionInfo<Settings = any> {
     action: string;
     context: string;
     device: string;
-    payload: InitEventActionInfoPayload;
+    payload: InitEventActionInfoPayload<Settings>;
 }
-export interface InitEventActionInfoPayload {
-    settings: any;
+export interface InitEventActionInfoPayload<Settings = any> {
+    settings: Settings;
     coordinates: InitEventActionInfoPayloadCoordinates;
 }
 export interface InitEventActionInfoPayloadCoordinates {

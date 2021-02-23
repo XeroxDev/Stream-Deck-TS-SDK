@@ -1,9 +1,12 @@
-export declare class CounterAction {
-    private counter;
+import { StreamDeckAction } from "../../src/abstracts/stream-deck-action";
+import { Counter } from "../counter";
+export declare class CounterAction extends StreamDeckAction<Counter, CounterAction> {
     private plugin;
-    private step;
-    constructor(counter?: number);
-    countUp(): void;
-    setSettings(count: number, step: number): void;
-    private setTitle;
+    private actionName;
+    private keyUpTimer;
+    constructor(plugin: Counter, actionName: string);
+    private onAppear;
+    private onKeyUp;
+    private onKeyDown;
+    private onSettings;
 }

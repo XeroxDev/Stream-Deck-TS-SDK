@@ -1,11 +1,6 @@
-export type PossibleEventsToReceive =
-	PossibleEventsForAllToReceive
-	| PossibleEventsForPiToReceive
-	| PossibleEventsForActionToReceive;
-
 export type PossibleEventsForAllToReceive = 'didReceiveSettings' | 'didReceiveGlobalSettings';
 
-export type PossibleEventsForPiToReceive = 'sendToPropertyInspector';
+export type PossibleEventsForPiToReceive = 'sendToPropertyInspector' | PossibleEventsForAllToReceive;
 
 export type PossibleEventsForActionToReceive =
 	'keyDown'
@@ -20,7 +15,8 @@ export type PossibleEventsForActionToReceive =
 	| 'systemDidWakeUp'
 	| 'propertyInspectorDidAppear'
 	| 'propertyInspectorDidDisappear'
-	| 'sendToPlugin';
+	| 'sendToPlugin'
+	| PossibleEventsForAllToReceive;
 
 export type PossibleEventsToSend =
 	PossibleEventsForPiToSend
