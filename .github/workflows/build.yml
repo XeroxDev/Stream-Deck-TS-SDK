@@ -1,18 +1,13 @@
-name: Build
+name: Publish
 on:
-  pull_request:
   push:
-    branches:
-      - master
     tags:
       - 'v*'
 
 jobs:
   publish:
     name: Publish to NPM
-    needs: [sonarcloud]
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v')
     steps:
       - uses: actions/checkout@v2
         with:
