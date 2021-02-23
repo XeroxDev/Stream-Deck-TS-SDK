@@ -1,0 +1,37 @@
+import { InitBase } from "../interfaces/events/init.event";
+import { PossibleEventsToSend } from "../interfaces/types";
+export declare abstract class StreamDeckHandlerBase {
+    private _ws;
+    private documentReady;
+    private connectionReady;
+    private debug;
+    private _port;
+    private _uuid;
+    private _registerEvent;
+    private _info;
+    private availableEvents;
+    constructor();
+    protected registerPi(actionInfo: string): void;
+    private docReady;
+    private connectElgatoStreamDeckSocket;
+    private open;
+    protected onOpen(): void;
+    protected onClose(): void;
+    protected onReady(): void;
+    private eventHandler;
+    setSettings<Settings = any>(settings: Settings, context: string): void;
+    requestSettings(context: string): void;
+    setGlobalSettings<GlobalSettings = any>(settings: GlobalSettings): void;
+    requestGlobalSettings(): void;
+    openUrl(url: string): void;
+    logMessage(message: string): void;
+    send(event: PossibleEventsToSend, data: any): void;
+    enableDebug(): void;
+    addEventListener(event: string, fnc: Function): void;
+    private get ws();
+    private set ws(value);
+    get port(): InitBase["port"];
+    get uuid(): InitBase["uuid"];
+    get registerEvent(): InitBase["registerEvent"];
+    get info(): InitBase["info"];
+}

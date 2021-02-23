@@ -1,6 +1,6 @@
 {
   "name": "streamdeck-typescript",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "This library will help you build elgato stream deck plugins in typescript",
   "homepage": "https://github.com/XeroxDev/Stream-Deck-TS-SDK",
   "license": "MIT",
@@ -26,7 +26,7 @@
     "Library"
   ],
   "scripts": {
-    "watch": "tsc -p tsconfig.json -w",
+    "watch": "tsc-watch --onSuccess \"npm run browserify\"",
     "build": "tsc -p tsconfig.json",
     "browserify": "browserify dist/example/counter.js > dist/bundle.js && browserify dist/example/counter-pi.js > dist/bundle-pi.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -37,6 +37,7 @@
     "browserify": "^17.0.0"
   },
   "devDependencies": {
-    "@tsconfig/recommended": "^1.0.1"
+    "@tsconfig/recommended": "^1.0.1",
+    "tsc-watch": "^4.2.9"
   }
 }

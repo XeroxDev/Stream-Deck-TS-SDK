@@ -1,10 +1,10 @@
 import {AcdData} from "../../acd-data";
 import {Coordinates} from "../../coordinates";
 
-export interface DidReceiveSettingsEvent extends AcdData {
+export interface DidReceiveSettingsEvent<Settings = any> extends AcdData {
 	event: 'didReceiveSettings',
 	payload: {
-		settings: any,
+		settings: Settings,
 		coordinates: Coordinates,
 		isInMultiAction: boolean
 	}
