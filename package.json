@@ -1,6 +1,6 @@
 {
   "name": "streamdeck-typescript",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "This library will help you build elgato stream deck plugins in typescript",
   "homepage": "https://github.com/XeroxDev/Stream-Deck-TS-SDK",
   "license": "MIT",
