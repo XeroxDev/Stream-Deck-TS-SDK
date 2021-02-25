@@ -4,10 +4,9 @@
  *
  */
 
-import {SDOnPiEvent}             from '../decorators/on-pi-event.decorator';
-import {InitPi}                  from '../interfaces/events/init.event';
-import {DidReceiveSettingsEvent} from '../interfaces/events/settings/did-receive-settings.event';
-import {StreamDeckHandlerBase}   from './stream-deck-handler-base';
+import {SDOnPiEvent}                     from '../decorators/on-pi-event.decorator';
+import {DidReceiveSettingsEvent, InitPi} from '../interfaces/interfaces';
+import {StreamDeckHandlerBase}           from './stream-deck-handler-base';
 
 export abstract class StreamDeckPropertyInspectorHandler<Settings = any, GlobalSettings = any> extends StreamDeckHandlerBase<GlobalSettings> {
     private _settings: Settings | {} = {};
@@ -34,19 +33,19 @@ export abstract class StreamDeckPropertyInspectorHandler<Settings = any, GlobalS
         });
     }
 
-    protected registerPi(actionInfo: string) {
-        this._actionInfo = JSON.parse(actionInfo);
-        this._settings = this.actionInfo.payload.settings;
-        this.requestSettings();
-        this.requestGlobalSettings();
-    }
-
     requestSettings() {
         super.requestSettings(this.uuid);
     }
 
     setSettings<Settings = any>(settings: Settings) {
         super.setSettings(settings, this.uuid);
+    }
+
+    @SDOnPiEvent('registerPi')
+    protected onRegisterPi(actionInfo: string) {
+        this._actionInfo = JSON.parse(actionInfo);
+        this._settings = this.actionInfo.payload.settings;
+        this.requestSettings();
     }
 
     @SDOnPiEvent('didReceiveSettings')

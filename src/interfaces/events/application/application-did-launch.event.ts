@@ -1,6 +1,6 @@
 export interface ApplicationDidLaunchEvent {
-	event: 'applicationDidLaunch',
-	payload: {
-		application: 'string'
-	}
+    event: 'applicationDidLaunch',
+    payload: {
+        application: 'string'
+    }
 }

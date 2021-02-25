@@ -46,7 +46,7 @@ This Plugin adds a few decorators for classes and methods.
 ## Usage
 
 You can see an example in the [example](https://github.com/XeroxDev/Stream-Deck-TS-SDK/tree/master/example) folder 
-or look through the [repository wiki](https://github.com/XeroxDev/Stream-Deck-TS-SDK/wiki)
+or look through the [Source docs](https://xeroxdev.github.io/Stream-Deck-TS-SDK/)
 
 ### Initializing Plugin
 Elgato uses 2 different files. The Action file (which handels all actions), and the Property Inspector file (which is 

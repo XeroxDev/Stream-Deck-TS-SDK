@@ -4,28 +4,40 @@
  *
  */
 
-import {SDOnActionEvent}                                     from '../decorators/on-action-event.decorator';
-import {InitBase}                                            from '../interfaces/events/init.event';
-import {DidReceiveGlobalSettingsEvent}                       from '../interfaces/events/settings/did-receive-global-settings.event';
-import {PossibleEventsForAllToReceive, PossibleEventsToSend} from '../interfaces/types';
+import {SDOnActionEvent} from '../decorators/decorators';
+import {SDOnPiEvent}     from '../index';
+import {
+    DidReceiveGlobalSettingsEvent,
+    InitBase,
+    PossibleEventsToReceive,
+    PossibleEventsToSend
+}                        from '../interfaces/interfaces';
+import {EventManager}    from '../manager/event.manager';
 
 export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
+    /** @private */
     protected _sd_events: Function[];
-    private documentReady: boolean;
-    private connectionReady: boolean;
-    private debug: boolean = false;
-    private availableEvents: Map<string, Function[]> = new Map<string, Function[]>();
+    private _documentReady: boolean = false;
+    private _connectionReady: boolean = false;
+    private _globalSettingsReady: boolean = false;
+    private _documentReadyInvoked: boolean = false;
+    private _connectionReadyInvoked: boolean = false;
+    private _globalSettingsInvoked: boolean = false;
+    private _debug: boolean = false;
     private _port: InitBase['port'];
     private _uuid: InitBase['uuid'];
     private _registerEvent: InitBase['registerEvent'];
     private _info: InitBase['info'];
     private _globalSettings: GlobalSettings | {} = {};
     private _ws: WebSocket;
+    private _eventManager: EventManager;
 
     protected constructor() {
+        this._eventManager = EventManager.INSTANCE;
+
         if (this._sd_events)
             for (let event of this._sd_events)
-                event(this);
+                event('*', this);
 
         (window as any).connectElgatoStreamDeckSocket = (
             port: string,
@@ -38,15 +50,17 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
             this._uuid = uuid;
             this._registerEvent = registerEvent;
             this._info = JSON.parse(info);
-            if (actionInfo)
+            if (actionInfo) {
                 this.registerPi(actionInfo);
+                this._eventManager.callEvents('registerPi', '*', actionInfo);
+            }
 
-            this.connectElgatoStreamDeckSocket();
-            this.docReady(() => {
-                this.documentReady = true;
+            this._connectElgatoStreamDeckSocket();
+            this._docReady(() => {
+                this._documentReady = true;
 
-                if (this.documentReady && this.connectionReady)
-                    this.onReady();
+                if (this._documentReady && this._connectionReady)
+                    this._handleReadyState();
             });
         };
     }
@@ -69,14 +83,6 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
 
     get globalSettings(): any {
         return this._globalSettings;
-    }
-
-    private get ws(): WebSocket {
-        return this._ws;
-    }
-
-    private set ws(value: WebSocket) {
-        this._ws = value;
     }
 
     /**
@@ -151,41 +157,58 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
             ...data
         };
 
-        if (this.debug)
-            console.log(`SEND ${event}`, eventToSend, this.ws);
+        if (this._debug)
+            console.log(`SEND ${event}`, eventToSend, this._ws);
 
-        if (this.ws)
-            this.ws.send(JSON.stringify(eventToSend));
-        else if (this.debug)
+        if (this._ws)
+            this._ws.send(JSON.stringify(eventToSend));
+        else if (this._debug)
             console.error('COULD NOT SEND EVENT');
     }
 
     public enableDebug() {
-        this.debug = true;
+        this._debug = true;
     }
 
-    public addEventListener(event: string, fnc: Function) {
-        if (!this.availableEvents.has(event))
-            this.availableEvents.set(event, []);
-
-        (this.availableEvents.get(event) as Function[]).push(fnc);
-    }
-
+    /**
+     * @protected
+     * @deprecated
+     * use {@link SDOnPiEvent} instead
+     * Example
+     * ```typescript
+     * @SDOnActionEvent('registerPi')
+     * private onRegisterPi(actionInfo: string) {
+     *     // Do something
+     * }
+     * ```
+     */
     protected registerPi(actionInfo: string) {
     }
 
+    /**
+     * @protected
+     * @deprecated
+     */
     protected onOpen() {
 
     }
 
+    /**
+     * @protected
+     * @deprecated
+     */
     protected onClose() {
 
     }
 
+    /**
+     * @protected
+     * @deprecated
+     */
     protected onReady() {
     }
 
-    private docReady(fn: () => void) {
+    private _docReady(fn: () => void) {
         if (document.readyState === 'complete' || document.readyState === 'interactive') {
             setTimeout(() => fn(), 1);
         } else {
@@ -193,39 +216,57 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
         }
     }
 
-    private connectElgatoStreamDeckSocket() {
-        this.ws = new WebSocket('ws://127.0.0.1:' + this._port);
+    private _connectElgatoStreamDeckSocket() {
+        this._ws = new WebSocket('ws://127.0.0.1:' + this._port);
 
-        this.ws.onopen = () => this.open();
-        this.ws.onclose = () => this.onClose();
-        this.ws.onmessage = ev => this.eventHandler(ev);
+        this._ws.onopen = () => this._open();
+        this._ws.onclose = () => this.onClose();
+        this._ws.onmessage = ev => this._eventHandler(ev);
     }
 
-    private open() {
+    private _open() {
         this.send(this._registerEvent, {uuid: this._uuid});
 
-        this.connectionReady = true;
-        if (this.documentReady && this.connectionReady)
-            this.onReady();
+        this._connectionReady = true;
+        if (this._documentReady && this._connectionReady)
+            this._handleReadyState();
         this.onOpen();
     }
 
-    private eventHandler(ev: MessageEvent) {
-        const eventData = JSON.parse(ev.data);
-        const event: PossibleEventsForAllToReceive = eventData.event;
+    private _handleReadyState() {
+        if (this._connectionReady && !this._connectionReadyInvoked) {
+            this._connectionReadyInvoked = true;
+            this._eventManager.callEvents('connectionReady');
+        }
 
-        if (this.debug)
-            console.log(`RECEIVE ${event}`, eventData, ev);
+        if (this._documentReady && !this._documentReadyInvoked) {
+            this._documentReadyInvoked = true;
+            this._eventManager.callEvents('documentReady');
+        }
 
-        if (this.availableEvents.has(event)) {
-            // @ts-ignore
-            for (let fnc of this.availableEvents.get(event))
-                fnc(ev);
+        if (this._globalSettingsReady && !this._globalSettingsInvoked) {
+            this._globalSettingsInvoked = true;
+            this._eventManager.callEvents('globalSettingsReady', '*', this.globalSettings);
+        }
+
+        if (this._globalSettingsInvoked && this._documentReadyInvoked && this._connectionReadyInvoked) {
+            this.onReady();
+            this._eventManager.callEvents('ready');
         }
     }
 
+    private _eventHandler(ev: MessageEvent) {
+        const eventData = JSON.parse(ev.data);
+        const event: PossibleEventsToReceive = eventData.event;
+
+        if (this._debug)
+            console.log(`RECEIVE ${event}`, eventData, ev);
+
+        this._eventManager.callEvents(event, eventData.action ?? '*', eventData);
+    }
+
     @SDOnActionEvent('didReceiveGlobalSettings')
-    private onGlobalSettings({payload: {settings}}: DidReceiveGlobalSettingsEvent) {
+    private _onGlobalSettings({payload: {settings}}: DidReceiveGlobalSettingsEvent) {
         this._globalSettings = settings;
     }
 }

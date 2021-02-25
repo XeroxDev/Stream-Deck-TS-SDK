@@ -1,6 +1,6 @@
 export interface ApplicationDidTerminateEvent {
-	event: 'applicationDidTerminate',
-	payload: {
-		application: 'string'
-	}
+    event: 'applicationDidTerminate',
+    payload: {
+        application: 'string'
+    }
 }

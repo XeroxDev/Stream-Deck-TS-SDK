@@ -1,5 +1,5 @@
-import {AcdData} from "../../acd-data";
+import {AcdData} from '../../acd-data';
 
 export interface PropertyInspectorDidAppearEvent extends AcdData {
-	event: 'propertyInspectorDidAppear'
+    event: 'propertyInspectorDidAppear'
 }

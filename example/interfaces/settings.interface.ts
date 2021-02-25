@@ -5,6 +5,6 @@
  */
 
 export interface SettingsInterface {
-	count: number,
-	steps: number
+    count: number,
+    steps: number
 }
