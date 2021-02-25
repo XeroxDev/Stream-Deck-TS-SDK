@@ -54,6 +54,8 @@ import {
     WillAppearEvent,
     WillDisappearEvent
 }                                     from './interfaces/interfaces';
+import { EventManager } from './manager/event.manager';
+import { SettingsManager } from './manager/settings.manager';
 
 export {
     SDOnActionEvent,
@@ -102,5 +104,7 @@ export {
     ApplicationDidLaunchEvent,
     ApplicationDidTerminateEvent,
     WillAppearEvent,
-    WillDisappearEvent
+    WillDisappearEvent,
+    EventManager,
+    SettingsManager
 };

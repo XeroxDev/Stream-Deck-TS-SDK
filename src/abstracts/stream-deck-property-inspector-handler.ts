@@ -1,21 +1,35 @@
-/*
- * Author: XeroxDev <help@xeroxdev.de>
- * Copyright (c) 2021.
- *
- */
 
 import {SDOnPiEvent}                     from '../decorators/on-pi-event.decorator';
 import {DidReceiveSettingsEvent, InitPi} from '../interfaces/interfaces';
 import {StreamDeckHandlerBase}           from './stream-deck-handler-base';
 
+/**
+ * This will help you create the logic for the property inspector.
+ * @author XeroxDev <help@xeroxdev.de>
+ * @copyright 2021
+ */
 export abstract class StreamDeckPropertyInspectorHandler<Settings = any, GlobalSettings = any> extends StreamDeckHandlerBase<GlobalSettings> {
+    /**
+     * @deprecated
+     * @type {{} | Settings}
+     * @private
+     */
     private _settings: Settings | {} = {};
     private _actionInfo: InitPi['actionInfo'];
 
+    /**
+     * @deprecated
+     * @returns {any}
+     */
     get settings(): Settings | any {
         return this._settings;
     }
 
+    /**
+     * Gets the action information
+     * @returns {InitPi["actionInfo"]}
+     * @protected
+     */
     protected get actionInfo(): InitPi['actionInfo'] {
         return this._actionInfo;
     }
@@ -33,14 +47,28 @@ export abstract class StreamDeckPropertyInspectorHandler<Settings = any, GlobalS
         });
     }
 
+    /**
+     * @inheritDoc
+     */
     requestSettings() {
         super.requestSettings(this.uuid);
     }
 
+    /**
+     * @inheritDoc
+     * @param {Settings} settings
+     */
     setSettings<Settings = any>(settings: Settings) {
         super.setSettings(settings, this.uuid);
     }
 
+    /**
+     *
+     * @param {string} actionInfo
+     * @protected
+     * @internal
+     * @private
+     */
     @SDOnPiEvent('registerPi')
     protected onRegisterPi(actionInfo: string) {
         this._actionInfo = JSON.parse(actionInfo);
@@ -48,6 +76,11 @@ export abstract class StreamDeckPropertyInspectorHandler<Settings = any, GlobalS
         this.requestSettings();
     }
 
+    /**
+     *
+     * @param {any} settings
+     * @private
+     */
     @SDOnPiEvent('didReceiveSettings')
     private onSettings({payload: {settings}}: DidReceiveSettingsEvent) {
         this._settings = settings;

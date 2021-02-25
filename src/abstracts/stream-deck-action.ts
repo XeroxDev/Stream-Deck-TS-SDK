@@ -1,10 +1,14 @@
-/*
- * Author: XeroxDev <help@xeroxdev.de>
- * Copyright (c) 2021.
- *
+/**
+ * This will help you creating actions.
+ * @author XeroxDev <help@xeroxdev.de>
+ * @copyright 2021
  */
-
 export abstract class StreamDeckAction<Plugin, Instance> {
+    /**
+     * @type {Function[]}
+     * @private
+     * @internal
+     */
     protected _sd_events: Function[];
 
     protected constructor(plugin: Plugin, actionName: string) {

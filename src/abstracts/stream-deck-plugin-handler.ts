@@ -1,12 +1,11 @@
-/*
- * Author: XeroxDev <help@xeroxdev.de>
- * Copyright (c) 2021.
- *
- */
-
 import {StateType, TargetType} from '../interfaces/enums';
 import {StreamDeckHandlerBase} from './stream-deck-handler-base';
 
+/**
+ * This will help you create the stream deck action handler
+ * @author XeroxDev <help@xeroxdev.de>
+ * @copyright 2021
+ */
 export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends StreamDeckHandlerBase<GlobalSettings> {
     /**
      * Sets the action title
@@ -52,6 +51,7 @@ export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends Stre
 
     /**
      * Shows a alert icon on action
+     * @param {string} context
      */
     public showAlert(context: string) {
         this.send('showAlert', {context});
@@ -59,6 +59,7 @@ export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends Stre
 
     /**
      * Shows a okay icon on action
+     * @param {string} context
      */
     public showOk(context: string) {
         this.send('showOk', {context});

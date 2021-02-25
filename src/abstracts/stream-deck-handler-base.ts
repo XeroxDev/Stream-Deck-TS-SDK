@@ -1,9 +1,3 @@
-/*
- * Author: XeroxDev <help@xeroxdev.de>
- * Copyright (c) 2021.
- *
- */
-
 import {SDOnActionEvent} from '../decorators/decorators';
 import {SDOnPiEvent}     from '../index';
 import {
@@ -13,9 +7,18 @@ import {
     PossibleEventsToSend
 }                        from '../interfaces/interfaces';
 import {EventManager}    from '../manager/event.manager';
+import {SettingsManager} from '../manager/settings.manager';
 
+/**
+ * This is the base class for all Stream Deck handlers
+ * @author XeroxDev <help@xeroxdev.de>
+ * @copyright 2021
+ */
 export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
-    /** @private */
+    /**
+     * @private
+     * @internal
+     */
     protected _sd_events: Function[];
     private _documentReady: boolean = false;
     private _connectionReady: boolean = false;
@@ -28,11 +31,13 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
     private _uuid: InitBase['uuid'];
     private _registerEvent: InitBase['registerEvent'];
     private _info: InitBase['info'];
-    private _globalSettings: GlobalSettings | {} = {};
     private _ws: WebSocket;
     private _eventManager: EventManager;
+    private readonly _settingsManager: SettingsManager;
+    private _globalSettings: GlobalSettings | {} = {};
 
     protected constructor() {
+        this._settingsManager = new SettingsManager(this);
         this._eventManager = EventManager.INSTANCE;
 
         if (this._sd_events)
@@ -65,30 +70,59 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
         };
     }
 
-    get port(): InitBase['port'] {
+    /**
+     * The port for the Stream Deck Application
+     * @returns {InitBase["port"]}
+     */
+    public get port(): InitBase['port'] {
         return this._port;
     }
 
-    get uuid(): InitBase['uuid'] {
+    /**
+     * @returns {InitBase["uuid"]} The UUID of the Plugin
+     */
+    public get uuid(): InitBase['uuid'] {
         return this._uuid;
     }
 
-    get registerEvent(): InitBase['registerEvent'] {
+    /**
+     * The Event sent from Elgato, which is needed for the registration procedure
+     * @returns {InitBase["registerEvent"]}
+     */
+    public get registerEvent(): InitBase['registerEvent'] {
         return this._registerEvent;
     }
 
-    get info(): InitBase['info'] {
+    /**
+     * All the information send from Elgato
+     * @returns {InitBase["info"]}
+     */
+    public get info(): InitBase['info'] {
         return this._info;
     }
 
-    get globalSettings(): any {
+    /**
+     * Through this object you can get, set and edit all available settings (global settings and context settings)
+     * @see {@link SettingsManager}
+     * @returns {SettingsManager}
+     */
+    public get settingsManager(): SettingsManager {
+        return this._settingsManager;
+    }
+
+    /**
+     * @deprecated
+     * @returns {any}
+     */
+    public get globalSettings(): any {
         return this._globalSettings;
     }
 
     /**
-     * Sets settings for current context / action
-     * @param settings
-     * @param context
+     * Sets settings for current context / action.
+     * @param {Settings} settings
+     * @param {string} context
+     * @internal
      */
     public setSettings<Settings = any>(settings: Settings, context: string) {
         this.send('setSettings', {
@@ -99,6 +133,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
 
     /**
      * Requests settings for current context / action
+     * @param {string} context
      */
     public requestSettings(context: string) {
         this.send('getSettings', {
@@ -108,7 +143,8 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
 
     /**
      * Sets global settings
-     * @param settings
+     * @param {GlobalSettings} settings
+     * @internal
      */
     public setGlobalSettings<GlobalSettings = any>(settings: GlobalSettings) {
         this.send('setGlobalSettings', {
@@ -128,7 +164,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
 
     /**
      * Opens a url
-     * @param url
+     * @param {string} url
      */
     public openUrl(url: string) {
         this.send('openUrl', {
@@ -138,7 +174,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
 
     /**
      * Logs a message to the elgato log file
-     * @param message
+     * @param {string} message
      */
     public logMessage(message: string) {
         this.send('logMessage', {
@@ -166,6 +202,9 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
             console.error('COULD NOT SEND EVENT');
     }
 
+    /**
+     * Enables debug mode so you can see incoming and outgoing events.
+     */
     public enableDebug() {
         this._debug = true;
     }
@@ -174,7 +213,8 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
      * @protected
      * @deprecated
      * use {@link SDOnPiEvent} instead
-     * Example
+     *
+     * @example
      * ```typescript
      * @SDOnActionEvent('registerPi')
      * private onRegisterPi(actionInfo: string) {
@@ -186,6 +226,17 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
     }
 
     /**
+     * Gets called after connection is opened.
+     * Please use {@link SDOnPiEvent} or {@link SDOnActionEvent} instead.
+     *
+     * @example
+     * ```typescript
+     * @SDOnActionEvent('connectionOpened')
+     * private onConnectionReady() {
+     *     // Do something
+     * }
+     * ```
+     *
      * @protected
      * @deprecated
      */
@@ -194,6 +245,18 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
     }
 
     /**
+     * Gets called after connection closed
+     *
+     * Please use {@link SDOnPiEvent} or {@link SDOnActionEvent} instead.
+     *
+     * @example
+     * ```typescript
+     * @SDOnActionEvent('connectionOpened')
+     * private onConnectionClosed() {
+     *     // Do something
+     * }
+     * ```
+     *
      * @protected
      * @deprecated
      */
@@ -202,12 +265,30 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
     }
 
     /**
+     * Gets called after everything is ready
+     *
+     * Please use {@link SDOnPiEvent} or {@link SDOnActionEvent} instead.
+     *
+     * @example
+     * ```typescript
+     * @SDOnActionEvent('setupReady')
+     * private onSetupReady() {
+     *     // Do something
+     * }
+     * ```
+     *
      * @protected
      * @deprecated
      */
     protected onReady() {
     }
 
+    /**
+     * Checks if dom ist ready
+     * @param {() => void} fn
+     * @private
+     * @internal
+     */
     private _docReady(fn: () => void) {
         if (document.readyState === 'complete' || document.readyState === 'interactive') {
             setTimeout(() => fn(), 1);
@@ -216,45 +297,66 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
         }
     }
 
+    /**
+     * Handels the socket connection
+     * @private
+     * @internal
+     */
     private _connectElgatoStreamDeckSocket() {
         this._ws = new WebSocket('ws://127.0.0.1:' + this._port);
 
         this._ws.onopen = () => this._open();
-        this._ws.onclose = () => this.onClose();
+        this._ws.onclose = () => {this.onClose(); this._eventManager.callEvents('connectionClosed')};
         this._ws.onmessage = ev => this._eventHandler(ev);
     }
 
+    /**
+     * Opens the connection
+     * @private
+     * @internal
+     */
     private _open() {
         this.send(this._registerEvent, {uuid: this._uuid});
 
         this._connectionReady = true;
         if (this._documentReady && this._connectionReady)
             this._handleReadyState();
-        this.onOpen();
     }
 
+    /**
+     * Handels the ready state
+     * @private
+     * @internal
+     */
     private _handleReadyState() {
         if (this._connectionReady && !this._connectionReadyInvoked) {
             this._connectionReadyInvoked = true;
-            this._eventManager.callEvents('connectionReady');
+            this.onOpen();
+            this._eventManager.callEvents('connectionOpened');
         }
 
         if (this._documentReady && !this._documentReadyInvoked) {
             this._documentReadyInvoked = true;
-            this._eventManager.callEvents('documentReady');
+            this._eventManager.callEvents('documentLoaded');
         }
 
         if (this._globalSettingsReady && !this._globalSettingsInvoked) {
             this._globalSettingsInvoked = true;
-            this._eventManager.callEvents('globalSettingsReady', '*', this.globalSettings);
+            this._eventManager.callEvents('globalSettingsAvailable', '*', this.settingsManager);
         }
 
         if (this._globalSettingsInvoked && this._documentReadyInvoked && this._connectionReadyInvoked) {
             this.onReady();
-            this._eventManager.callEvents('ready');
+            this._eventManager.callEvents('setupReady');
         }
     }
 
+    /**
+     * Handels all events
+     * @param {MessageEvent} ev
+     * @private
+     * @internal
+     */
     private _eventHandler(ev: MessageEvent) {
         const eventData = JSON.parse(ev.data);
         const event: PossibleEventsToReceive = eventData.event;
@@ -262,11 +364,22 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
         if (this._debug)
             console.log(`RECEIVE ${event}`, eventData, ev);
 
+        if (eventData.payload?.settings && eventData.context) {
+            this.settingsManager.cacheContextSettings(eventData.context, eventData.payload.settings);
+        }
+
         this._eventManager.callEvents(event, eventData.action ?? '*', eventData);
     }
 
+    /**
+     * Sets the global settings, after it gets available
+     * @decorator `@SDOnActionEvent('didReceiveGlobalSettings')`
+     * @param {any} settings
+     * @private
+     */
     @SDOnActionEvent('didReceiveGlobalSettings')
     private _onGlobalSettings({payload: {settings}}: DidReceiveGlobalSettingsEvent) {
+        this.settingsManager.cacheGlobalSettings(settings);
         this._globalSettings = settings;
     }
 }

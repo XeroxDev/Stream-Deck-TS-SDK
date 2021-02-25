@@ -10,7 +10,7 @@ class CounterPi extends StreamDeckPropertyInspectorHandler {
         super();
     }
 
-    @SDOnPiEvent('documentReady')
+    @SDOnPiEvent('documentLoaded')
     onDocumentReady() {
         this.count = document.getElementById('count') as HTMLInputElement;
         this.stepsCount = document.getElementById('steps') as HTMLInputElement;

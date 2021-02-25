@@ -9,6 +9,7 @@ import {PossibleEventsToReceive} from '../interfaces/types';
 
 /**
  * Singleton class for EventManager
+ * @internal
  */
 export class EventManager {
     private static _INSTANCE: EventManager;
@@ -20,6 +21,7 @@ export class EventManager {
     /**
      * Returns EventManager instance
      * @returns {EventManager}
+     * @internal
      * @constructor
      */
     public static get INSTANCE(): EventManager {
@@ -28,6 +30,16 @@ export class EventManager {
         return this._INSTANCE;
     }
 
+    /**
+     * Helper for decorators
+     * @internal
+     * @param {string} event
+     * @param target
+     * @param {string | symbol} propertyKey
+     * @param {TypedPropertyDescriptor<any>} descriptor
+     * @returns {TypedPropertyDescriptor<any>}
+     * @constructor
+     */
     public static DefaultDecoratorEventListener(event: string, target: any, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<any>) {
         const eventListener = <T>(actionName: string, instance: T) => {
             if (typeof actionName !== 'string') {
@@ -48,12 +60,25 @@ export class EventManager {
         return descriptor;
     }
 
+    /**
+     * Registers event
+     * @internal
+     * @param {string} eventName
+     * @param {Function} callback
+     */
     public registerEvent(eventName: string, callback: Function) {
         if (!this.registeredEvents.has(eventName))
             this.registeredEvents.set(eventName, []);
         this.registeredEvents.get(eventName)?.push(callback);
     }
 
+    /**
+     * Calls event
+     * @internal
+     * @param {PossibleEventsToReceive} eventName
+     * @param {string} actionName
+     * @param params
+     */
     public callEvents(eventName: PossibleEventsToReceive, actionName: string = '*', ...params: any[]) {
         this.registeredEvents.get(eventName)?.forEach(val => val(actionName, ...params));
     }

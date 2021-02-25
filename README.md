@@ -35,9 +35,7 @@ This Plugin adds a few decorators for classes and methods.
 ### Available decorators
 
 - methods
-    - ``@SDInit()`` - Calls method after initialization process is done
-        - Overhands StreamDeckPlugin instance as parameter
-    - ``@SDOnPiEvent(event, actionName?)`` - Listens for specified event in the property inspector context and if 
+    - ``@SDOnPiEvent(event)`` - Listens for specified event in the property inspector context and if 
       triggered, calls method
         - Overhands EventData (\*NameOfEvent\*Event; Example: KeyDownEvent, KeyUpEvent, WillAppearEvent)
     - ``@SDOnActionEvent(event)`` - Listens for specified event in the action context and if triggered, calls method
@@ -54,19 +52,16 @@ for settings)
 
 #### counter.ts
 ```typescript
-import {StreamDeckPluginHandler} from "../src/abstracts/stream-deck-plugin-handler";
-import {CounterAction} from "./actions/counter.action";
+import {StreamDeckPluginHandler} from '../src';
+import {CounterAction}           from './actions/counter.action';
 
-// Extends StreamDeckPluginHandler for easier use of theElgato Api
 export class Counter extends StreamDeckPluginHandler {
-	constructor() {
-		super();
-		// Create counter action
-		new CounterAction(this, 'fun.shiro.counter.action');
-	}
+    constructor() {
+        super();
+        new CounterAction(this, 'fun.shiro.counter.action');
+    }
 }
 
-// Initialize Plugin
 new Counter();
 ```
 
@@ -87,39 +82,44 @@ Here you can see. After the build you have only one file (bundle.js in this case
 
 #### counter-pi.ts
 ```typescript
-import {StreamDeckPropertyInspectorHandler} from "../src/abstracts/stream-deck-property-inspector-handler";
-import {SettingsInterface} from "./interfaces/settings.interface";
-import {DidReceiveSettingsEvent} from "../src/interfaces/events/settings/did-receive-settings.event";
-import {SDOnPiEvent} from "../src/decorators/on-pi-event.decorator";
+import {DidReceiveSettingsEvent, SDOnPiEvent, StreamDeckPropertyInspectorHandler} from '../src';
+import {SettingsInterface}                                                        from './interfaces/settings.interface';
 
-// Extends StreamDeckPropertyInspectorHandler for easier communication with the elgato pi api
 class CounterPi extends StreamDeckPropertyInspectorHandler {
-	private count: HTMLInputElement;
-	private stepsCount: HTMLInputElement;
-	private saveButton: HTMLButtonElement;
+    private count: HTMLInputElement;
+    private stepsCount: HTMLInputElement;
+    private saveButton: HTMLButtonElement;
 
-	// Gets called after connection is established and DOM ready loaded
-	protected onReady() {
-		this.count = document.getElementById('count') as HTMLInputElement
-		this.stepsCount = document.getElementById('steps') as HTMLInputElement;
-		this.saveButton = document.getElementById('save') as HTMLButtonElement;
-		this.saveButton.onclick = () => {
-			this.setSettings<SettingsInterface>({count: this.count.valueAsNumber, steps: this.stepsCount.valueAsNumber});
-		}
+    constructor() {
+        super();
+    }
 
-		this.count.value = this.settings.count ?? 0;
-		this.stepsCount.value = this.settings.steps ?? 1;
-	}
+    @SDOnPiEvent('documentLoaded')
+    onDocumentReady() {
+        this.count = document.getElementById('count') as HTMLInputElement;
+        this.stepsCount = document.getElementById('steps') as HTMLInputElement;
+        this.saveButton = document.getElementById('save') as HTMLButtonElement;
+        this.saveButton.onclick = () => {
+            this.setSettings<SettingsInterface>(
+                {
+                    count: this.count.valueAsNumber,
+                    steps: this.stepsCount.valueAsNumber
+                }
+            );
+        };
 
-	// Listens to the didReceiveSettings Event
-	@SDOnPiEvent('didReceiveSettings')
-	private onSettingsReceived({payload: {settings}}: DidReceiveSettingsEvent<SettingsInterface>) {
-		if (!settings)
-			return;
+        this.count.value = this.settings.count ?? 0;
+        this.stepsCount.value = this.settings.steps ?? 1;
+    }
 
-		this.count.value = settings.count.toString();
-		this.stepsCount.value = settings.steps.toString();
-	}
+    @SDOnPiEvent('didReceiveSettings')
+    private onSettingsReceived({payload: {settings}}: DidReceiveSettingsEvent<SettingsInterface>) {
+        if (!settings)
+            return;
+
+        this.count.value = settings.count.toString();
+        this.stepsCount.value = settings.steps.toString();
+    }
 }
 
 new CounterPi();
@@ -152,62 +152,65 @@ new CounterPi();
 </body>
 </html>
 ```
-
+#### counter.action.ts
 ```typescript
-import {StreamDeckAction} from "../../src/abstracts/stream-deck-action";
-import {Counter} from "../counter";
-import {SDOnActionEvent} from "../../src/decorators/on-action-event.decorator";
-import {WillAppearEvent} from "../../src/interfaces/events/appearance/will-appear.event";
-import {SettingsInterface} from "../interfaces/settings.interface";
-import {KeyUpEvent} from "../../src/interfaces/events/keys/key-up.event";
-import {DidReceiveSettingsEvent} from "../../src/interfaces/events/settings/did-receive-settings.event";
-import {KeyDownEvent} from "../../src/interfaces/events/keys/key-down.event";
+import {
+    DidReceiveSettingsEvent,
+    KeyDownEvent,
+    KeyUpEvent,
+    SDOnActionEvent,
+    StreamDeckAction,
+    WillAppearEvent
+}                          from '../../src';
+import {Counter}           from '../counter';
+import {SettingsInterface} from '../interfaces/settings.interface';
 
-// extends StreamDeckAction for easier use with the context handling
 export class CounterAction extends StreamDeckAction<Counter, CounterAction> {
-	private keyUpTimer: any;
+    private keyUpTimer: any;
 
-	// Plugin and action name are default parameters for the constructor
-	constructor(private plugin: Counter, private actionName: string) {
-		super(plugin, actionName);
-	}
+    constructor(private plugin: Counter, private actionName: string) {
+        super(plugin, actionName);
+    }
 
-	// Listens to the willAppear event
-	@SDOnActionEvent('willAppear')
-	private onAppear({context, payload: {settings}}: WillAppearEvent<SettingsInterface>) {
-		if (!settings)
-			return
-		this.plugin.setTitle((settings.count ?? 0).toString(), context);
-	}
+    @SDOnActionEvent('willAppear')
+    private onAppear({context, payload: {settings}}: WillAppearEvent<SettingsInterface>) {
+        this.plugin.setTitle((settings.count ?? 0).toString(), context);
+    }
 
-	// Listens to the keyUp event
-	@SDOnActionEvent('keyUp')
-	private onKeyUp({context, payload: {settings}}: KeyUpEvent<SettingsInterface>) {
-		clearTimeout(this.keyUpTimer);
-		const steps = settings.steps ?? 1
-		const count = settings.count + steps ?? 0;
-		this.plugin.setTitle(count.toString(), context);
-		this.plugin.setSettings<SettingsInterface>({steps, count}, context);
-	}
+    @SDOnActionEvent('keyUp')
+    private onKeyUp({context, payload: {settings}}: KeyUpEvent<SettingsInterface>) {
+        clearTimeout(this.keyUpTimer);
+        const steps = settings.steps ?? 1;
+        const count = (settings.count ?? 0) + steps;
+        this.plugin.setTitle(count.toString(), context);
+        this.plugin.setSettings<SettingsInterface>({steps, count}, context);
+    }
 
-	// Listens to the keyDown event
-	@SDOnActionEvent('keyDown')
-	private onKeyDown({context, payload: {settings}}: KeyDownEvent<SettingsInterface>) {
-		this.keyUpTimer = setTimeout(() => {
-			const steps = settings.steps ?? 1;
-			this.plugin.setSettings<SettingsInterface>({
-				steps,
-				count: steps * -1
-			}, context);
-			this.plugin.setTitle('0', context);
-		}, 2000);
-	}
+    @SDOnActionEvent('keyDown')
+    private onKeyDown({context, payload: {settings}}: KeyDownEvent<SettingsInterface>) {
+        this.keyUpTimer = setTimeout(() => {
+            const steps = settings.steps ?? 1;
+            this.plugin.setSettings<SettingsInterface>(
+                {
+                    steps,
+                    count: steps * -1
+                }, context
+            );
+            this.plugin.setTitle('0', context);
+        }, 2000);
+    }
 
-	// Listens to the didReceiveSettings event
-	@SDOnActionEvent('didReceiveSettings')
-	private onSettings({context, payload: {settings}}: DidReceiveSettingsEvent<SettingsInterface>) {
-		this.plugin.setTitle(settings.count.toString() ?? 0, context);
-	}
+    @SDOnActionEvent('didReceiveSettings')
+    private onSettings({context, payload: {settings}}: DidReceiveSettingsEvent<SettingsInterface>) {
+        this.plugin.setTitle(settings.count.toString() ?? 0, context);
+    }
+}
+```
+#### settings.interface.ts
+```typescript
+export interface SettingsInterface {
+    count: number,
+    steps: number
 }
 ```
 
