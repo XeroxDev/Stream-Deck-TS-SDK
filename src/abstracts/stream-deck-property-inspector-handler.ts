@@ -8,22 +8,10 @@ import {StreamDeckHandlerBase} from "./stream-deck-handler-base";
 import {InitPi} from "../interfaces/events/init.event";
 import {SDOnPiEvent} from "../decorators/on-pi-event.decorator";
 import {DidReceiveSettingsEvent} from "../interfaces/events/settings/did-receive-settings.event";
-import {DidReceiveGlobalSettingsEvent} from "../interfaces/events/settings/did-receive-global-settings.event";
 
-export abstract class StreamDeckPropertyInspectorHandler<Settings = any, GlobalSettings  = any> extends StreamDeckHandlerBase {
+export abstract class StreamDeckPropertyInspectorHandler<Settings = any, GlobalSettings  = any> extends StreamDeckHandlerBase<GlobalSettings> {
 	private _actionInfo: InitPi['actionInfo'];
 	private _settings: Settings|any = 'Not available yet';
-	private _globalSettings: GlobalSettings|any = 'Not available yet';
-
-	protected _sd_events: Function[];
-
-	constructor() {
-		super();
-		if (this._sd_events)
-			for (let event of this._sd_events)
-				event(this);
-	}
-
 
 	protected registerPi(actionInfo: string) {
 		this._actionInfo = JSON.parse(actionInfo);
@@ -35,11 +23,6 @@ export abstract class StreamDeckPropertyInspectorHandler<Settings = any, GlobalS
 	@SDOnPiEvent('didReceiveSettings')
 	private onSettings({payload: {settings}}: DidReceiveSettingsEvent) {
 		this._settings = settings;
-	}
-
-	@SDOnPiEvent('didReceiveGlobalSettings')
-	private onGlobalSettings({payload: {settings}}: DidReceiveGlobalSettingsEvent) {
-		this._globalSettings = settings;
 	}
 
 	/**
@@ -71,9 +54,5 @@ export abstract class StreamDeckPropertyInspectorHandler<Settings = any, GlobalS
 
 	get settings(): Settings|any {
 		return this._settings;
-	}
-
-	get globalSettings(): GlobalSettings|any {
-		return this._globalSettings;
 	}
 }

@@ -6,20 +6,8 @@
 
 import {StateType, TargetType} from "../interfaces/enums";
 import {StreamDeckHandlerBase} from "./stream-deck-handler-base";
-import {DidReceiveGlobalSettingsEvent} from "../interfaces/events/settings/did-receive-global-settings.event";
-import {SDOnActionEvent} from "../decorators/on-action-event.decorator";
 
-export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends StreamDeckHandlerBase {
-	private _globalSettings: GlobalSettings|any = 'Not available yet';
-	protected _sd_events: Function[];
-
-	constructor() {
-		super();
-		if (this._sd_events)
-			for (let event of this._sd_events)
-				event(this);
-
-	}
+export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends StreamDeckHandlerBase<GlobalSettings> {
 	/**
 	 * Sets the action title
 	 * @param {string} title The string the title should be
@@ -113,14 +101,5 @@ export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends Stre
 			action: action,
 			payload
 		});
-	}
-
-	@SDOnActionEvent('didReceiveGlobalSettings')
-	private onGlobalSettings({payload: {settings}}: DidReceiveGlobalSettingsEvent) {
-		this._globalSettings = settings;
-	}
-
-	get globalSettings(): any {
-		return this._globalSettings;
 	}
 }
