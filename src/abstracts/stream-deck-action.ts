@@ -1,19 +1,19 @@
-/*
- * Author: XeroxDev <help@xeroxdev.de>
- * Copyright (c) 2021.
- *
+/**
+ * This will help you creating actions.
+ * @author XeroxDev <help@xeroxdev.de>
+ * @copyright 2021
  */
-
-import {StreamDeckPluginHandler} from "./stream-deck-plugin-handler";
-
 export abstract class StreamDeckAction<Plugin, Instance> {
-	protected _sd_events: Function[];
+    /**
+     * @type {Function[]}
+     * @private
+     * @internal
+     */
+    protected _sd_events: Function[];
 
-	protected constructor(plugin: Plugin, actionName: string) {
-		if (!(plugin instanceof StreamDeckPluginHandler))
-			throw Error('"plugin" needs to be a child of StreamDeckPluginHandler');
-		if (this._sd_events)
-			for (let event of this._sd_events)
-				event(plugin, actionName, this);
-	}
+    protected constructor(plugin: Plugin, actionName: string) {
+        if (this._sd_events)
+            for (let event of this._sd_events)
+                event(actionName, this);
+    }
 }

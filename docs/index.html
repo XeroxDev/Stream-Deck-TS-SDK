@@ -1,0 +1,483 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>streamdeck-typescript - v2.0.3</title>
+	<meta name="description" content="Documentation for streamdeck-typescript - v2.0.3">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">streamdeck-typescript - v2.0.3</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>streamdeck-typescript - v2.0.3</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p><a href="https://github.com/XeroxDev/Stream-Deck-TS-SDK/network/members"><img src="https://img.shields.io/github/forks/XeroxDev/Stream-Deck-TS-SDK?color=blue&style=for-the-badge" alt="Forks"></a>
+					<a href="https://github.com/XeroxDev/Stream-Deck-TS-SDK/stargazers"><img src="https://img.shields.io/github/stars/XeroxDev/Stream-Deck-TS-SDK?color=yellow&style=for-the-badge" alt="Stars"></a>
+					<a href="https://github.com/XeroxDev/Stream-Deck-TS-SDK/watchers"><img src="https://img.shields.io/github/watchers/XeroxDev/Stream-Deck-TS-SDK?color=lightgray&style=for-the-badge" alt="Watchers"></a>
+				<a href="https://github.com/XeroxDev/Stream-Deck-TS-SDK/graphs/contributors"><img src="https://img.shields.io/github/contributors/XeroxDev/Stream-Deck-TS-SDK?color=green&style=for-the-badge" alt="Contributors"></a></p>
+				<p><a href="https://github.com/XeroxDev/Stream-Deck-TS-SDK/issues"><img src="https://img.shields.io/github/issues/XeroxDev/Stream-Deck-TS-SDK?color=yellow&style=for-the-badge" alt="Issues"></a>
+				<a href="https://github.com/XeroxDev/Stream-Deck-TS-SDK/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed/XeroxDev/Stream-Deck-TS-SDK?color=yellow&style=for-the-badge" alt="Issues closed"></a></p>
+				<p><a href="https://github.com/XeroxDev/Stream-Deck-TS-SDK/pulls"><img src="https://img.shields.io/github/issues-pr/XeroxDev/Stream-Deck-TS-SDK?color=yellow&style=for-the-badge" alt="Issues-pr"></a>
+					<a href="https://github.com/XeroxDev/Stream-Deck-TS-SDK/pulls?q=is%3Apr+is%3Aclosed"><img src="https://img.shields.io/github/issues-pr-closed/XeroxDev/Stream-Deck-TS-SDK?color=yellow&style=for-the-badge" alt="Issues-pr closed"></a>
+				<a href="https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge" alt="PRs welcome"></a></p>
+				<p><img src="https://img.shields.io/sonar/quality_gate/XeroxDev_Stream-Deck-TS-SDK?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge" alt="Sonar Quality Gate">
+				<img src="https://img.shields.io/npm/dt/streamdeck-typescript?style=for-the-badge&logo=npm" alt="npm"></p>
+				<p><a href="https://github.com/XeroxDev/Stream-Deck-TS-SDK/blob/master/LICENSE"><img src="https://img.shields.io/github/license/XeroxDev/Stream-Deck-TS-SDK?style=for-the-badge" alt="GitHub license"></a>
+				<a href="https://shields.io"><img src="https://img.shields.io/badge/badges-awesome-green?style=for-the-badge" alt="Awesome Badges"></a></p>
+				<a href="#stream-deck-ts-sdk" id="stream-deck-ts-sdk" style="color: inherit; text-decoration: none;">
+					<h1>Stream Deck TS-SDK</h1>
+				</a>
+				<p>A library that helps you develop plugins for Elgato&#39;s Stream Deck.</p>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<ul>
+					<li>Install via <a href="https://www.npmjs.com/"><code>npm</code></a>:</li>
+				</ul>
+				<pre><code class="language-bash"><span style="color: #000000">npm install --save streamdeck-typescript</span>
+</code></pre>
+				<a href="#decorators" id="decorators" style="color: inherit; text-decoration: none;">
+					<h2>Decorators</h2>
+				</a>
+				<p>This Plugin adds a few decorators for classes and methods.</p>
+				<a href="#available-decorators" id="available-decorators" style="color: inherit; text-decoration: none;">
+					<h3>Available decorators</h3>
+				</a>
+				<ul>
+					<li>methods<ul>
+							<li><code>@SDOnPiEvent(event)</code> - Listens for specified event in the property inspector context and if
+								triggered, calls method<ul>
+									<li>Overhands EventData (*NameOfEvent*Event; Example: KeyDownEvent, KeyUpEvent, WillAppearEvent)</li>
+								</ul>
+							</li>
+							<li><code>@SDOnActionEvent(event)</code> - Listens for specified event in the action context and if triggered, calls method<ul>
+									<li>Overhands EventData (*NameOfEvent*Event; Example: KeyDownEvent, KeyUpEvent, WillAppearEvent)</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<p>You can see an example in the <a href="https://github.com/XeroxDev/Stream-Deck-TS-SDK/tree/master/example">example</a> folder
+				or look through the <a href="https://xeroxdev.github.io/Stream-Deck-TS-SDK/">Source docs</a></p>
+				<a href="#initializing-plugin" id="initializing-plugin" style="color: inherit; text-decoration: none;">
+					<h3>Initializing Plugin</h3>
+				</a>
+				<p>Elgato uses 2 different files. The Action file (which handels all actions), and the Property Inspector file (which is
+				for settings)</p>
+				<a href="#counterts" id="counterts" style="color: inherit; text-decoration: none;">
+					<h4>counter.ts</h4>
+				</a>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">StreamDeckPluginHandler</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;../src&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">CounterAction</span><span style="color: #000000">}           </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;./actions/counter.action&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">Counter</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">StreamDeckPluginHandler</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">constructor</span><span style="color: #000000">() {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">super</span><span style="color: #000000">();</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">CounterAction</span><span style="color: #000000">(</span><span style="color: #0000FF">this</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;fun.shiro.counter.action&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Counter</span><span style="color: #000000">();</span>
+</code></pre>
+				<a href="#pluginhtml" id="pluginhtml" style="color: inherit; text-decoration: none;">
+					<h4>plugin.html</h4>
+				</a>
+				<pre><code class="language-html"><span style="color: #800000">&lt;!DOCTYPE</span><span style="color: #000000"> </span><span style="color: #FF0000">html</span><span style="color: #800000">&gt;</span>
+<span style="color: #800000">&lt;html</span><span style="color: #000000"> </span><span style="color: #FF0000">lang</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;en&quot;</span><span style="color: #800000">&gt;</span>
+<span style="color: #800000">&lt;head&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;title&gt;</span><span style="color: #000000">Test Plugin</span><span style="color: #800000">&lt;/title&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;meta</span><span style="color: #000000"> </span><span style="color: #FF0000">charset</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;utf-8&quot;</span><span style="color: #800000">&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;script</span><span style="color: #000000FF"> </span><span style="color: #FF0000">src</span><span style="color: #000000FF">=</span><span style="color: #0000FF">&quot;dist/bundle.js&quot;</span><span style="color: #800000">&gt;&lt;/script&gt;</span>
+<span style="color: #800000">&lt;/head&gt;</span>
+<span style="color: #800000">&lt;body&gt;</span>
+<span style="color: #800000">&lt;/body&gt;</span>
+<span style="color: #800000">&lt;/html&gt;</span>
+</code></pre>
+				<p>Here you can see. After the build you have only one file (bundle.js in this case) and this gets loaded.</p>
+				<a href="#counter-pits" id="counter-pits" style="color: inherit; text-decoration: none;">
+					<h4>counter-pi.ts</h4>
+				</a>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">DidReceiveSettingsEvent</span><span style="color: #000000">, </span><span style="color: #001080">SDOnPiEvent</span><span style="color: #000000">, </span><span style="color: #001080">StreamDeckPropertyInspectorHandler</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;../src&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">SettingsInterface</span><span style="color: #000000">}                                                        </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;./interfaces/settings.interface&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">CounterPi</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">StreamDeckPropertyInspectorHandler</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">private</span><span style="color: #000000"> </span><span style="color: #001080">count</span><span style="color: #000000">: </span><span style="color: #267F99">HTMLInputElement</span><span style="color: #000000">;</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">private</span><span style="color: #000000"> </span><span style="color: #001080">stepsCount</span><span style="color: #000000">: </span><span style="color: #267F99">HTMLInputElement</span><span style="color: #000000">;</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">private</span><span style="color: #000000"> </span><span style="color: #001080">saveButton</span><span style="color: #000000">: </span><span style="color: #267F99">HTMLButtonElement</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">    </span><span style="color: #0000FF">constructor</span><span style="color: #000000">() {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">super</span><span style="color: #000000">();</span>
+<span style="color: #000000">    }</span>
+
+<span style="color: #000000">    @</span><span style="color: #795E26">SDOnPiEvent</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;documentLoaded&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">    </span><span style="color: #795E26">onDocumentReady</span><span style="color: #000000">() {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">count</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;count&#039;</span><span style="color: #000000">) </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #267F99">HTMLInputElement</span><span style="color: #000000">;</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">stepsCount</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;steps&#039;</span><span style="color: #000000">) </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #267F99">HTMLInputElement</span><span style="color: #000000">;</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">saveButton</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;save&#039;</span><span style="color: #000000">) </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #267F99">HTMLButtonElement</span><span style="color: #000000">;</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">saveButton</span><span style="color: #000000">.</span><span style="color: #795E26">onclick</span><span style="color: #000000"> = () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">            </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #795E26">setSettings</span><span style="color: #000000">&lt;</span><span style="color: #267F99">SettingsInterface</span><span style="color: #000000">&gt;(</span>
+<span style="color: #000000">                {</span>
+<span style="color: #000000">                    </span><span style="color: #001080">count:</span><span style="color: #000000"> </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">count</span><span style="color: #000000">.</span><span style="color: #001080">valueAsNumber</span><span style="color: #000000">,</span>
+<span style="color: #000000">                    </span><span style="color: #001080">steps:</span><span style="color: #000000"> </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">stepsCount</span><span style="color: #000000">.</span><span style="color: #001080">valueAsNumber</span>
+<span style="color: #000000">                }</span>
+<span style="color: #000000">            );</span>
+<span style="color: #000000">        };</span>
+
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">count</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000"> = </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">settings</span><span style="color: #000000">.</span><span style="color: #001080">count</span><span style="color: #000000"> ?? </span><span style="color: #098658">0</span><span style="color: #000000">;</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">stepsCount</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000"> = </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">settings</span><span style="color: #000000">.</span><span style="color: #001080">steps</span><span style="color: #000000"> ?? </span><span style="color: #098658">1</span><span style="color: #000000">;</span>
+<span style="color: #000000">    }</span>
+
+<span style="color: #000000">    @</span><span style="color: #795E26">SDOnPiEvent</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;didReceiveSettings&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">private</span><span style="color: #000000"> </span><span style="color: #795E26">onSettingsReceived</span><span style="color: #000000">({</span><span style="color: #001080">payload</span><span style="color: #000000">: {</span><span style="color: #001080">settings</span><span style="color: #000000">}}: </span><span style="color: #267F99">DidReceiveSettingsEvent</span><span style="color: #000000">&lt;</span><span style="color: #267F99">SettingsInterface</span><span style="color: #000000">&gt;) {</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (!</span><span style="color: #001080">settings</span><span style="color: #000000">)</span>
+<span style="color: #000000">            </span><span style="color: #AF00DB">return</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">count</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000"> = </span><span style="color: #001080">settings</span><span style="color: #000000">.</span><span style="color: #001080">count</span><span style="color: #000000">.</span><span style="color: #795E26">toString</span><span style="color: #000000">();</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">stepsCount</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000"> = </span><span style="color: #001080">settings</span><span style="color: #000000">.</span><span style="color: #001080">steps</span><span style="color: #000000">.</span><span style="color: #795E26">toString</span><span style="color: #000000">();</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">CounterPi</span><span style="color: #000000">();</span>
+</code></pre>
+				<a href="#property-inspectorhtml" id="property-inspectorhtml" style="color: inherit; text-decoration: none;">
+					<h4>property-inspector.html</h4>
+				</a>
+				<pre><code class="language-html"><span style="color: #800000">&lt;!DOCTYPE</span><span style="color: #000000"> </span><span style="color: #FF0000">html</span><span style="color: #800000">&gt;</span>
+<span style="color: #800000">&lt;html</span><span style="color: #000000"> </span><span style="color: #FF0000">lang</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;en&quot;</span><span style="color: #800000">&gt;</span>
+<span style="color: #800000">&lt;head&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;title&gt;</span><span style="color: #000000">Test Plugin Inspector</span><span style="color: #800000">&lt;/title&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;meta</span><span style="color: #000000"> </span><span style="color: #FF0000">charset</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;utf-8&quot;</span><span style="color: #800000">&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;link</span><span style="color: #000000"> </span><span style="color: #FF0000">rel</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;stylesheet&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">href</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;sdpi.css&quot;</span><span style="color: #800000">&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;script</span><span style="color: #000000FF"> </span><span style="color: #FF0000">src</span><span style="color: #000000FF">=</span><span style="color: #0000FF">&quot;dist/bundle-pi.js&quot;</span><span style="color: #800000">&gt;&lt;/script&gt;</span>
+<span style="color: #800000">&lt;/head&gt;</span>
+<span style="color: #800000">&lt;body&gt;</span>
+<span style="color: #800000">&lt;div</span><span style="color: #000000"> </span><span style="color: #FF0000">class</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;sdpi-wrapper&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">id</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;mainSettings&quot;</span><span style="color: #800000">&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;div</span><span style="color: #000000"> </span><span style="color: #FF0000">class</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;sdpi-item&quot;</span><span style="color: #800000">&gt;</span>
+<span style="color: #000000">        </span><span style="color: #800000">&lt;div</span><span style="color: #000000"> </span><span style="color: #FF0000">class</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;sdpi-item-label&quot;</span><span style="color: #800000">&gt;</span><span style="color: #000000">Count</span><span style="color: #800000">&lt;/div&gt;</span>
+<span style="color: #000000">        </span><span style="color: #800000">&lt;input</span><span style="color: #000000"> </span><span style="color: #FF0000">class</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;sdpi-item-value&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">type</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;number&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">id</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;count&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">value</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;0&quot;</span><span style="color: #800000">&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;/div&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;div</span><span style="color: #000000"> </span><span style="color: #FF0000">class</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;sdpi-item&quot;</span><span style="color: #800000">&gt;</span>
+<span style="color: #000000">        </span><span style="color: #800000">&lt;div</span><span style="color: #000000"> </span><span style="color: #FF0000">class</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;sdpi-item-label&quot;</span><span style="color: #800000">&gt;</span><span style="color: #000000">Steps</span><span style="color: #800000">&lt;/div&gt;</span>
+<span style="color: #000000">        </span><span style="color: #800000">&lt;input</span><span style="color: #000000"> </span><span style="color: #FF0000">class</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;sdpi-item-value&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">type</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;number&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">id</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;steps&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">value</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;1&quot;</span><span style="color: #800000">&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;/div&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;div</span><span style="color: #000000"> </span><span style="color: #FF0000">class</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;sdpi-item&quot;</span><span style="color: #800000">&gt;</span>
+<span style="color: #000000">        </span><span style="color: #800000">&lt;button</span><span style="color: #000000"> </span><span style="color: #FF0000">class</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;sdpi-item-value&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">id</span><span style="color: #000000">=</span><span style="color: #0000FF">&quot;save&quot;</span><span style="color: #800000">&gt;</span><span style="color: #000000">Save</span><span style="color: #800000">&lt;/button&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;/div&gt;</span>
+<span style="color: #800000">&lt;/div&gt;</span>
+<span style="color: #800000">&lt;/body&gt;</span>
+<span style="color: #800000">&lt;/html&gt;</span>
+</code></pre>
+				<a href="#counteractionts" id="counteractionts" style="color: inherit; text-decoration: none;">
+					<h4>counter.action.ts</h4>
+				</a>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">DidReceiveSettingsEvent</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">KeyDownEvent</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">KeyUpEvent</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">SDOnActionEvent</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">StreamDeckAction</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">WillAppearEvent</span>
+<span style="color: #000000">}                          </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;../../src&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">Counter</span><span style="color: #000000">}           </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;../counter&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">SettingsInterface</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;../interfaces/settings.interface&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">CounterAction</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">StreamDeckAction</span><span style="color: #000000">&lt;</span><span style="color: #267F99">Counter</span><span style="color: #000000">, </span><span style="color: #267F99">CounterAction</span><span style="color: #000000">&gt; {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">private</span><span style="color: #000000"> </span><span style="color: #001080">keyUpTimer</span><span style="color: #000000">: </span><span style="color: #267F99">any</span><span style="color: #000000">;</span>
+
+<span style="color: #000000">    </span><span style="color: #0000FF">constructor</span><span style="color: #000000">(</span><span style="color: #0000FF">private</span><span style="color: #000000"> </span><span style="color: #001080">plugin</span><span style="color: #000000">: </span><span style="color: #267F99">Counter</span><span style="color: #000000">, </span><span style="color: #0000FF">private</span><span style="color: #000000"> </span><span style="color: #001080">actionName</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">super</span><span style="color: #000000">(</span><span style="color: #001080">plugin</span><span style="color: #000000">, </span><span style="color: #001080">actionName</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+
+<span style="color: #000000">    @</span><span style="color: #795E26">SDOnActionEvent</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;willAppear&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">private</span><span style="color: #000000"> </span><span style="color: #795E26">onAppear</span><span style="color: #000000">({</span><span style="color: #001080">context</span><span style="color: #000000">, </span><span style="color: #001080">payload</span><span style="color: #000000">: {</span><span style="color: #001080">settings</span><span style="color: #000000">}}: </span><span style="color: #267F99">WillAppearEvent</span><span style="color: #000000">&lt;</span><span style="color: #267F99">SettingsInterface</span><span style="color: #000000">&gt;) {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">plugin</span><span style="color: #000000">.</span><span style="color: #795E26">setTitle</span><span style="color: #000000">((</span><span style="color: #001080">settings</span><span style="color: #000000">.</span><span style="color: #001080">count</span><span style="color: #000000"> ?? </span><span style="color: #098658">0</span><span style="color: #000000">).</span><span style="color: #795E26">toString</span><span style="color: #000000">(), </span><span style="color: #001080">context</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+
+<span style="color: #000000">    @</span><span style="color: #795E26">SDOnActionEvent</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;keyUp&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">private</span><span style="color: #000000"> </span><span style="color: #795E26">onKeyUp</span><span style="color: #000000">({</span><span style="color: #001080">context</span><span style="color: #000000">, </span><span style="color: #001080">payload</span><span style="color: #000000">: {</span><span style="color: #001080">settings</span><span style="color: #000000">}}: </span><span style="color: #267F99">KeyUpEvent</span><span style="color: #000000">&lt;</span><span style="color: #267F99">SettingsInterface</span><span style="color: #000000">&gt;) {</span>
+<span style="color: #000000">        </span><span style="color: #795E26">clearTimeout</span><span style="color: #000000">(</span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">keyUpTimer</span><span style="color: #000000">);</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">steps</span><span style="color: #000000"> = </span><span style="color: #001080">settings</span><span style="color: #000000">.</span><span style="color: #001080">steps</span><span style="color: #000000"> ?? </span><span style="color: #098658">1</span><span style="color: #000000">;</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">count</span><span style="color: #000000"> = (</span><span style="color: #001080">settings</span><span style="color: #000000">.</span><span style="color: #001080">count</span><span style="color: #000000"> ?? </span><span style="color: #098658">0</span><span style="color: #000000">) + </span><span style="color: #001080">steps</span><span style="color: #000000">;</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">plugin</span><span style="color: #000000">.</span><span style="color: #795E26">setTitle</span><span style="color: #000000">(</span><span style="color: #001080">count</span><span style="color: #000000">.</span><span style="color: #795E26">toString</span><span style="color: #000000">(), </span><span style="color: #001080">context</span><span style="color: #000000">);</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">plugin</span><span style="color: #000000">.</span><span style="color: #795E26">setSettings</span><span style="color: #000000">&lt;</span><span style="color: #267F99">SettingsInterface</span><span style="color: #000000">&gt;({</span><span style="color: #001080">steps</span><span style="color: #000000">, </span><span style="color: #001080">count</span><span style="color: #000000">}, </span><span style="color: #001080">context</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+
+<span style="color: #000000">    @</span><span style="color: #795E26">SDOnActionEvent</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;keyDown&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">private</span><span style="color: #000000"> </span><span style="color: #795E26">onKeyDown</span><span style="color: #000000">({</span><span style="color: #001080">context</span><span style="color: #000000">, </span><span style="color: #001080">payload</span><span style="color: #000000">: {</span><span style="color: #001080">settings</span><span style="color: #000000">}}: </span><span style="color: #267F99">KeyDownEvent</span><span style="color: #000000">&lt;</span><span style="color: #267F99">SettingsInterface</span><span style="color: #000000">&gt;) {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">keyUpTimer</span><span style="color: #000000"> = </span><span style="color: #795E26">setTimeout</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">            </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">steps</span><span style="color: #000000"> = </span><span style="color: #001080">settings</span><span style="color: #000000">.</span><span style="color: #001080">steps</span><span style="color: #000000"> ?? </span><span style="color: #098658">1</span><span style="color: #000000">;</span>
+<span style="color: #000000">            </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">plugin</span><span style="color: #000000">.</span><span style="color: #795E26">setSettings</span><span style="color: #000000">&lt;</span><span style="color: #267F99">SettingsInterface</span><span style="color: #000000">&gt;(</span>
+<span style="color: #000000">                {</span>
+<span style="color: #000000">                    </span><span style="color: #001080">steps</span><span style="color: #000000">,</span>
+<span style="color: #000000">                    </span><span style="color: #001080">count:</span><span style="color: #000000"> </span><span style="color: #001080">steps</span><span style="color: #000000"> * -</span><span style="color: #098658">1</span>
+<span style="color: #000000">                }, </span><span style="color: #001080">context</span>
+<span style="color: #000000">            );</span>
+<span style="color: #000000">            </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">plugin</span><span style="color: #000000">.</span><span style="color: #795E26">setTitle</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;0&#039;</span><span style="color: #000000">, </span><span style="color: #001080">context</span><span style="color: #000000">);</span>
+<span style="color: #000000">        }, </span><span style="color: #098658">2000</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+
+<span style="color: #000000">    @</span><span style="color: #795E26">SDOnActionEvent</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;didReceiveSettings&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">private</span><span style="color: #000000"> </span><span style="color: #795E26">onSettings</span><span style="color: #000000">({</span><span style="color: #001080">context</span><span style="color: #000000">, </span><span style="color: #001080">payload</span><span style="color: #000000">: {</span><span style="color: #001080">settings</span><span style="color: #000000">}}: </span><span style="color: #267F99">DidReceiveSettingsEvent</span><span style="color: #000000">&lt;</span><span style="color: #267F99">SettingsInterface</span><span style="color: #000000">&gt;) {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">plugin</span><span style="color: #000000">.</span><span style="color: #795E26">setTitle</span><span style="color: #000000">(</span><span style="color: #001080">settings</span><span style="color: #000000">.</span><span style="color: #001080">count</span><span style="color: #000000">.</span><span style="color: #795E26">toString</span><span style="color: #000000">() ?? </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #001080">context</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#settingsinterfacets" id="settingsinterfacets" style="color: inherit; text-decoration: none;">
+					<h4>settings.interface.ts</h4>
+				</a>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">SettingsInterface</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">count</span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">steps</span><span style="color: #000000">: </span><span style="color: #267F99">number</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#building-the-plugin" id="building-the-plugin" style="color: inherit; text-decoration: none;">
+					<h2>Building the Plugin</h2>
+				</a>
+				<p>I would suggest you to do it like in the example with tsc and browserify.
+					See <a href="https://github.com/XeroxDev/Stream-Deck-TS-SDK/blob/master/package.json"><strong>package.json</strong></a>
+				and <a href="https://github.com/XeroxDev/Stream-Deck-TS-SDK/blob/master/tsconfig.json"><strong>tsconfig.json</strong></a></p>
+				<pre><code class="language-json"><span style="color: #000000">...</span>
+<span style="color: #A31515">&quot;scripts&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;watch&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;tsc -p tsconfig.json -w&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;browserify&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;browserify dist/example/counter.js &gt; dist/bundle.js &amp;&amp; browserify dist/example/counter-pi.js &gt; dist/bundle-pi.js&quot;</span>
+<span style="color: #000000">}</span>
+<span style="color: #000000">...</span>
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="enums/devicetype.html" class="tsd-kind-icon">Device<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/eventtype.html" class="tsd-kind-icon">Event<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/statetype.html" class="tsd-kind-icon">State<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="enums/targettype.html" class="tsd-kind-icon">Target<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/settingsmanager.html" class="tsd-kind-icon">Settings<wbr>Manager</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/streamdeckaction.html" class="tsd-kind-icon">Stream<wbr>Deck<wbr>Action</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/streamdeckhandlerbase.html" class="tsd-kind-icon">Stream<wbr>Deck<wbr>Handler<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/streamdeckpluginhandler.html" class="tsd-kind-icon">Stream<wbr>Deck<wbr>Plugin<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/streamdeckpropertyinspectorhandler.html" class="tsd-kind-icon">Stream<wbr>Deck<wbr>Property<wbr>Inspector<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/acddata.html" class="tsd-kind-icon">Acd<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/applicationdidlaunchevent.html" class="tsd-kind-icon">Application<wbr>Did<wbr>Launch<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/applicationdidterminateevent.html" class="tsd-kind-icon">Application<wbr>Did<wbr>Terminate<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/coordinates.html" class="tsd-kind-icon">Coordinates</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/devicedidconnectevent.html" class="tsd-kind-icon">Device<wbr>Did<wbr>Connect<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/devicediddisconnectevent.html" class="tsd-kind-icon">Device<wbr>Did<wbr>Disconnect<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/didreceiveglobalsettingsevent.html" class="tsd-kind-icon">Did<wbr>Receive<wbr>Global<wbr>Settings<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/didreceivesettingsevent.html" class="tsd-kind-icon">Did<wbr>Receive<wbr>Settings<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/initbase.html" class="tsd-kind-icon">Init<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/initeventactioninfo.html" class="tsd-kind-icon">Init<wbr>Event<wbr>Action<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/initeventactioninfopayload.html" class="tsd-kind-icon">Init<wbr>Event<wbr>Action<wbr>Info<wbr>Payload</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/initeventactioninfopayloadcoordinates.html" class="tsd-kind-icon">Init<wbr>Event<wbr>Action<wbr>Info<wbr>Payload<wbr>Coordinates</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/initeventinfo.html" class="tsd-kind-icon">Init<wbr>Event<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/initeventinfoapplication.html" class="tsd-kind-icon">Init<wbr>Event<wbr>Info<wbr>Application</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/initeventinfodevice.html" class="tsd-kind-icon">Init<wbr>Event<wbr>Info<wbr>Device</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/initeventinfodevicesize.html" class="tsd-kind-icon">Init<wbr>Event<wbr>Info<wbr>Device<wbr>Size</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/initeventinfoplugin.html" class="tsd-kind-icon">Init<wbr>Event<wbr>Info<wbr>Plugin</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/initpi.html" class="tsd-kind-icon">Init<wbr>Pi</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/keydownevent.html" class="tsd-kind-icon">Key<wbr>Down<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/keyupevent.html" class="tsd-kind-icon">Key<wbr>UpEvent</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/propertyinspectordidappearevent.html" class="tsd-kind-icon">Property<wbr>Inspector<wbr>Did<wbr>Appear<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/propertyinspectordiddisappearevent.html" class="tsd-kind-icon">Property<wbr>Inspector<wbr>Did<wbr>Disappear<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/sendtopievent.html" class="tsd-kind-icon">Send<wbr>ToPi<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/sendtopluginevent.html" class="tsd-kind-icon">Send<wbr>ToPlugin<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/systemdidwakeupevent.html" class="tsd-kind-icon">System<wbr>Did<wbr>Wake<wbr>UpEvent</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/titleparameters.html" class="tsd-kind-icon">Title<wbr>Parameters</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/titleparametersdidchangeevent.html" class="tsd-kind-icon">Title<wbr>Parameters<wbr>Did<wbr>Change<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/willappearevent.html" class="tsd-kind-icon">Will<wbr>Appear<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/willdisappearevent.html" class="tsd-kind-icon">Will<wbr>Disappear<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#possibleeventsforactiontoreceive" class="tsd-kind-icon">Possible<wbr>Events<wbr>For<wbr>Action<wbr>ToReceive</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#possibleeventsforactiontosend" class="tsd-kind-icon">Possible<wbr>Events<wbr>For<wbr>Action<wbr>ToSend</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#possibleeventsforalltoreceive" class="tsd-kind-icon">Possible<wbr>Events<wbr>For<wbr>All<wbr>ToReceive</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#possibleeventsforalltosend" class="tsd-kind-icon">Possible<wbr>Events<wbr>For<wbr>All<wbr>ToSend</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#possibleeventsforpitoreceive" class="tsd-kind-icon">Possible<wbr>Events<wbr>For<wbr>PiTo<wbr>Receive</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#possibleeventsforpitosend" class="tsd-kind-icon">Possible<wbr>Events<wbr>For<wbr>PiTo<wbr>Send</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#possibleeventstoreceive" class="tsd-kind-icon">Possible<wbr>Events<wbr>ToReceive</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#possibleeventstosend" class="tsd-kind-icon">Possible<wbr>Events<wbr>ToSend</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#sdonactionevent" class="tsd-kind-icon">SDOn<wbr>Action<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#sdonpievent" class="tsd-kind-icon">SDOn<wbr>PiEvent</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

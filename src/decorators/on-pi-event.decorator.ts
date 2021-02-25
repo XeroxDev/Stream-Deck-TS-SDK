@@ -4,28 +4,18 @@
  *
  */
 
-import {PossibleEventsForPiToReceive} from "../interfaces/types";
-import {StreamDeckPropertyInspectorHandler} from "../abstracts/stream-deck-property-inspector-handler";
+import {PossibleEventsForPiToReceive} from '../interfaces/types';
+import {EventManager}                 from '../manager/event.manager';
 
-export function SDOnPiEvent(event: PossibleEventsForPiToReceive, actionName?: string): any {
-	return (target: any, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<any>) => {
-		const addEventListener = <T>(plugin: StreamDeckPropertyInspectorHandler) => {
-			plugin.addEventListener(event,
-				function (ev: MessageEvent) {
-					const eventData = JSON.parse(ev.data);
-
-					if (!actionName || (!eventData.action || eventData.action === actionName))
-						descriptor.value.apply(plugin, [eventData]);
-					else
-						return;
-				}
-			);
-		}
-
-		if (!target._sd_events) {
-			target._sd_events = [];
-		}
-
-		target._sd_events.push(addEventListener);
-	}
+/**
+ * This is the Event decorator for the property inspector context
+ * @param {PossibleEventsForPiToReceive} event
+ * @returns {any}
+ * @constructor
+ * @category Decorator
+ */
+export function SDOnPiEvent(event: PossibleEventsForPiToReceive): any {
+    return (target: any, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<any>) => {
+        return EventManager.DefaultDecoratorEventListener(event, target, propertyKey, descriptor);
+    };
 }
