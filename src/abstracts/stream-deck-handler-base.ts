@@ -15,6 +15,12 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
     private connectionReady: boolean;
     private debug: boolean = false;
     private availableEvents: Map<string, Function[]> = new Map<string, Function[]>();
+    private _port: InitBase['port'];
+    private _uuid: InitBase['uuid'];
+    private _registerEvent: InitBase['registerEvent'];
+    private _info: InitBase['info'];
+    private _globalSettings: GlobalSettings | {} = {};
+    private _ws: WebSocket;
 
     protected constructor() {
         if (this._sd_events)
@@ -45,37 +51,25 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
         };
     }
 
-    private _port: InitBase['port'];
-
     get port(): InitBase['port'] {
         return this._port;
     }
-
-    private _uuid: InitBase['uuid'];
 
     get uuid(): InitBase['uuid'] {
         return this._uuid;
     }
 
-    private _registerEvent: InitBase['registerEvent'];
-
     get registerEvent(): InitBase['registerEvent'] {
         return this._registerEvent;
     }
-
-    private _info: InitBase['info'];
 
     get info(): InitBase['info'] {
         return this._info;
     }
 
-    private _globalSettings: GlobalSettings | any = 'Not available yet';
-
     get globalSettings(): any {
         return this._globalSettings;
     }
-
-    private _ws: WebSocket;
 
     private get ws(): WebSocket {
         return this._ws;
