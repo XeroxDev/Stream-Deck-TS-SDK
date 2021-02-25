@@ -15,7 +15,7 @@ export function SDOnActionEvent(event: PossibleEventsForActionToReceive): any {
 					const eventData = JSON.parse(ev.data);
 
 					if (!eventData.action || eventData.action === actionName)
-						descriptor.value.apply(instance, [eventData]);
+						descriptor.value.apply(instance ?? plugin, [eventData]);
 				}
 			);
 		}
