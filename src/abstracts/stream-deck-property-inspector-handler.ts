@@ -15,7 +15,7 @@ export abstract class StreamDeckPropertyInspectorHandler<Settings = any, GlobalS
 	private _settings: Settings|any = 'Not available yet';
 	private _globalSettings: GlobalSettings|any = 'Not available yet';
 
-	_sd_events: Function[];
+	protected _sd_events: Function[];
 
 	constructor() {
 		super();

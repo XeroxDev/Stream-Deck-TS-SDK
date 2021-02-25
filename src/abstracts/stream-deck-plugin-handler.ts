@@ -11,7 +11,15 @@ import {SDOnActionEvent} from "../decorators/on-action-event.decorator";
 
 export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends StreamDeckHandlerBase {
 	private _globalSettings: GlobalSettings|any = 'Not available yet';
+	protected _sd_events: Function[];
 
+	constructor() {
+		super();
+		if (this._sd_events)
+			for (let event of this._sd_events)
+				event(this);
+
+	}
 	/**
 	 * Sets the action title
 	 * @param {string} title The string the title should be
