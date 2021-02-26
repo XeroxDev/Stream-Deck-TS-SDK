@@ -7,6 +7,10 @@ import {StreamDeckHandlerBase} from './stream-deck-handler-base';
  * @copyright 2021
  */
 export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends StreamDeckHandlerBase<GlobalSettings> {
+    constructor() {
+        super();
+    }
+
     /**
      * Sets the action title
      * @param {string} title The string the title should be

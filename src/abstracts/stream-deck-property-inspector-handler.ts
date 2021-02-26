@@ -9,6 +9,10 @@ import {StreamDeckHandlerBase}           from './stream-deck-handler-base';
  * @copyright 2021
  */
 export abstract class StreamDeckPropertyInspectorHandler<Settings = any, GlobalSettings = any> extends StreamDeckHandlerBase<GlobalSettings> {
+    constructor() {
+        super();
+    }
+
     /**
      * @deprecated
      * @type {{} | Settings}
