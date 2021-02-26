@@ -111,7 +111,7 @@ export class SettingsManager {
     public saveGlobalSettings(ms: number) {
         this.debounce(() => {
             this._handler.setGlobalSettings(this._globalSettings);
-        }, ms);
+        }, ms)();
     }
 
     /**
@@ -128,7 +128,7 @@ export class SettingsManager {
             } else if (this._settings.get(context)) {
                 this._handler.setSettings(this._settings.get(context), context);
             }
-        }, ms);
+        }, ms)();
 
     }
 
