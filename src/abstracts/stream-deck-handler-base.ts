@@ -379,5 +379,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
     private _onGlobalSettings({payload: {settings}}: DidReceiveGlobalSettingsEvent) {
         this.settingsManager.cacheGlobalSettings(settings);
         this._globalSettings = settings;
+        this._globalSettingsReady = true;
+        this._handleReadyState();
     }
 }
