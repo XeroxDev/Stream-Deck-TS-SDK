@@ -63,9 +63,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
             this._connectElgatoStreamDeckSocket();
             this._docReady(() => {
                 this._documentReady = true;
-
-                if (this._documentReady && this._connectionReady)
-                    this._handleReadyState();
+                this._handleReadyState();
             });
         };
     }
@@ -319,8 +317,8 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
         this.send(this._registerEvent, {uuid: this._uuid});
 
         this._connectionReady = true;
-        if (this._documentReady && this._connectionReady)
-            this._handleReadyState();
+        this._handleReadyState();
+        this.requestGlobalSettings();
     }
 
     /**
