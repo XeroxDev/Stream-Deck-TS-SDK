@@ -35,6 +35,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
     private _eventManager: EventManager;
     private readonly _settingsManager: SettingsManager;
     private _globalSettings: GlobalSettings | {} = {};
+    private _cachedEvents: any[] = [];
 
     protected constructor() {
         this._settingsManager = new SettingsManager(this);
@@ -196,8 +197,11 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
 
         if (this._ws)
             this._ws.send(JSON.stringify(eventToSend));
-        else if (this._debug)
-            console.error('COULD NOT SEND EVENT');
+        else {
+            if (this._debug)
+                console.error('COULD NOT SEND. CACHING FOR RESEND EVENT');
+            this._cachedEvents.push(JSON.stringify(eventToSend));
+        }
     }
 
     /**
@@ -304,7 +308,10 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
         this._ws = new WebSocket('ws://127.0.0.1:' + this._port);
 
         this._ws.onopen = () => this._open();
-        this._ws.onclose = () => {this.onClose(); this._eventManager.callEvents('connectionClosed')};
+        this._ws.onclose = () => {
+            this.onClose();
+            this._eventManager.callEvents('connectionClosed');
+        };
         this._ws.onmessage = ev => this._eventHandler(ev);
     }
 
@@ -315,6 +322,14 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
      */
     private _open() {
         this.send(this._registerEvent, {uuid: this._uuid});
+
+        if (this._cachedEvents.length >= 1) {
+            if (this._debug)
+                console.log('RESENDING CACHED EVENTS: ', this._cachedEvents);
+            for (let cachedEvent of this._cachedEvents) {
+                this._ws.send(cachedEvent);
+            }
+        }
 
         this._connectionReady = true;
         this._handleReadyState();
