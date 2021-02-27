@@ -379,14 +379,13 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
         if (this._debug)
             console.log(`RECEIVE ${event}`, eventData, ev);
 
-        if (event === 'didReceiveSettings')
-            this.settingsManager.cacheContextSettings(eventData.context, eventData.payload.settings);
         if (event === 'didReceiveGlobalSettings') {
             this.settingsManager.cacheGlobalSettings(eventData.payload.settings);
             this._globalSettings = eventData.payload.settings;
             this._globalSettingsReady = true;
             this._handleReadyState();
-        }
+        } else if (eventData.context && eventData.payload?.settings)
+            this.settingsManager.cacheContextSettings(eventData.context, eventData.payload.settings);
 
 
         this._eventManager.callEvents(event, eventData.action ?? '*', eventData);
