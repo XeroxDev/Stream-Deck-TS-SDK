@@ -26,6 +26,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
     private _documentReadyInvoked: boolean = false;
     private _connectionReadyInvoked: boolean = false;
     private _globalSettingsInvoked: boolean = false;
+    private _onReadyInvoked: boolean = false;
     private _debug: boolean = false;
     private _port: InitBase['port'];
     private _uuid: InitBase['uuid'];
@@ -358,7 +359,8 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
             this._eventManager.callEvents('globalSettingsAvailable', '*', this.settingsManager);
         }
 
-        if (this._globalSettingsInvoked && this._documentReadyInvoked && this._connectionReadyInvoked) {
+        if (this._globalSettingsInvoked && this._documentReadyInvoked && this._connectionReadyInvoked && !this._onReadyInvoked) {
+            this._onReadyInvoked = true;
             this.onReady();
             this._eventManager.callEvents('setupReady');
         }
