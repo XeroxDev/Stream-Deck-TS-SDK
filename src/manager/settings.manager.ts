@@ -10,6 +10,7 @@ export class SettingsManager {
     private _settings: Map<string, any> = new Map<string, any>();
     private _globalSettings: any = {};
     private _autoSave = true;
+    private timeoutId: any;
 
     constructor(private _handler: StreamDeckHandlerBase) {
     }
@@ -49,10 +50,7 @@ export class SettingsManager {
      * @param {number} ms for the debounce
      */
     public setGlobalSettingsAttributes(attributes: {}, ms: number = 0) {
-        this._globalSettings = {...this.getGlobalSettings(), ...attributes};
-
-        if (this._autoSave)
-            this.saveGlobalSettings(ms);
+        this.setGlobalSettings({...this.getGlobalSettings<{}>(), ...attributes});
     }
 
     /**
@@ -99,9 +97,6 @@ export class SettingsManager {
             this.setContextSettings(context, {...oldSettings, ...attributes}, ms);
         else
             this.setContextSettings(context, {...attributes}, ms);
-
-        if (this._autoSave)
-            this.saveContextSettings(context, ms);
     }
 
     /**
@@ -111,7 +106,7 @@ export class SettingsManager {
     public saveGlobalSettings(ms: number) {
         this.debounce(() => {
             this._handler.setGlobalSettings(this._globalSettings);
-        }, ms)();
+        }, ms);
     }
 
     /**
@@ -128,7 +123,7 @@ export class SettingsManager {
             } else if (this._settings.get(context)) {
                 this._handler.setSettings(this._settings.get(context), context);
             }
-        }, ms)();
+        }, ms);
 
     }
 
@@ -150,10 +145,7 @@ export class SettingsManager {
     }
 
     private debounce(fn: Function, ms: number) {
-        let timeoutId: ReturnType<typeof setTimeout>;
-        return function (this: any, ...args: any[]) {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(() => fn.apply(this, args), ms);
-        };
+        clearTimeout(this.timeoutId);
+        this.timeoutId = setTimeout(() => fn(), ms);
     }
 }

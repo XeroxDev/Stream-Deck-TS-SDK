@@ -215,15 +215,19 @@ export interface SettingsInterface {
 ```
 
 ## Building the Plugin
-I would suggest you to do it like in the example with tsc and browserify. 
+I would suggest you to do it like in the example with browserify, terser, tsify, typescript and for development watchify
+
 See [**package.json**](https://github.com/XeroxDev/Stream-Deck-TS-SDK/blob/master/package.json) 
 and [**tsconfig.json**](https://github.com/XeroxDev/Stream-Deck-TS-SDK/blob/master/tsconfig.json)
 
 ```json
-...
-"scripts": {
-  "watch": "tsc -p tsconfig.json -w",
-  "browserify": "browserify dist/example/counter.js > dist/bundle.js && browserify dist/example/counter-pi.js > dist/bundle-pi.js"
+{
+    "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "build-example": "browserify -p tsify example/counter-pi.ts | terser -cm --comments false -o dist/bundle-pi.js && browserify -p tsify example/counter.ts | terser -cm --comments false -o dist/bundle.js",
+        "watch": "start watchify --debug -p tsify example/counter.ts -o dist/bundle.js && start watchify --debug -p tsify example/counter-pi.ts -o dist/bundle-pi.js",
+        "documentation": "typedoc src/index.ts",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    }
 }
-...
 ```

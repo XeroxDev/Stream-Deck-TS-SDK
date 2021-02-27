@@ -377,24 +377,16 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
         if (this._debug)
             console.log(`RECEIVE ${event}`, eventData, ev);
 
-        if (eventData.payload?.settings && eventData.context) {
+        if (event === 'didReceiveSettings')
             this.settingsManager.cacheContextSettings(eventData.context, eventData.payload.settings);
+        if (event === 'didReceiveGlobalSettings') {
+            this.settingsManager.cacheGlobalSettings(eventData.payload.settings);
+            this._globalSettings = eventData.payload.settings;
+            this._globalSettingsReady = true;
+            this._handleReadyState();
         }
 
-        this._eventManager.callEvents(event, eventData.action ?? '*', eventData);
-    }
 
-    /**
-     * Sets the global settings, after it gets available
-     * @decorator `@SDOnActionEvent('didReceiveGlobalSettings')`
-     * @param {any} settings
-     * @private
-     */
-    @SDOnActionEvent('didReceiveGlobalSettings')
-    private _onGlobalSettings({payload: {settings}}: DidReceiveGlobalSettingsEvent) {
-        this.settingsManager.cacheGlobalSettings(settings);
-        this._globalSettings = settings;
-        this._globalSettingsReady = true;
-        this._handleReadyState();
+        this._eventManager.callEvents(event, eventData.action ?? '*', eventData);
     }
 }

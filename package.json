@@ -1,6 +1,6 @@
 {
   "name": "streamdeck-typescript",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "This library will help you build elgato stream deck plugins in typescript",
   "homepage": "https://github.com/XeroxDev/Stream-Deck-TS-SDK",
   "license": "MIT",
@@ -26,20 +26,20 @@
     "Library"
   ],
   "scripts": {
-    "watch": "tsc-watch --onSuccess \"npm run browserify\"",
     "build": "tsc -p tsconfig.json",
-    "browserify": "browserify dist/example/counter.js > dist/bundle.js && browserify dist/example/counter-pi.js > dist/bundle-pi.js",
+    "build-example": "browserify -p tsify example/counter-pi.ts | terser -cm --comments false -o dist/bundle-pi.js && browserify -p tsify example/counter.ts | terser -cm --comments false -o dist/bundle.js",
+    "watch": "start watchify --debug -p tsify example/counter.ts -o dist/bundle.js && start watchify --debug -p tsify example/counter-pi.ts -o dist/bundle-pi.js",
     "documentation": "typedoc src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "private": false,
-  "dependencies": {
-    "browserify": "^17.0.0",
-    "typescript": "^4.1.5"
-  },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
-    "tsc-watch": "^4.2.9",
-    "typedoc": "^0.20.28"
+    "browserify": "^17.0.0",
+    "terser": "^5.6.0",
+    "tsify": "^5.0.2",
+    "typedoc": "^0.20.28",
+    "typescript": "^4.1.5",
+    "watchify": "^4.0.0"
   }
 }
