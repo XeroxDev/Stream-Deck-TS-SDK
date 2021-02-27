@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>streamdeck-typescript - v2.1.1</title>
-	<meta name="description" content="Documentation for streamdeck-typescript - v2.1.1">
+	<title>streamdeck-typescript - v2.1.6</title>
+	<meta name="description" content="Documentation for streamdeck-typescript - v2.1.6">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 	<script async src="assets/js/search.js" id="search-script"></script>
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">streamdeck-typescript - v2.1.1</a>
+					<a href="index.html" class="title">streamdeck-typescript - v2.1.6</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -50,7 +50,7 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<h1>streamdeck-typescript - v2.1.1</h1>
+			<h1>streamdeck-typescript - v2.1.6</h1>
 		</div>
 	</div>
 </header>
@@ -283,15 +283,18 @@
 				<a href="#building-the-plugin" id="building-the-plugin" style="color: inherit; text-decoration: none;">
 					<h2>Building the Plugin</h2>
 				</a>
-				<p>I would suggest you to do it like in the example with tsc and browserify.
-					See <a href="https://github.com/XeroxDev/Stream-Deck-TS-SDK/blob/master/package.json"><strong>package.json</strong></a>
+				<p>I would suggest you to do it like in the example with browserify, terser, tsify, typescript and for development watchify</p>
+				<p>See <a href="https://github.com/XeroxDev/Stream-Deck-TS-SDK/blob/master/package.json"><strong>package.json</strong></a>
 				and <a href="https://github.com/XeroxDev/Stream-Deck-TS-SDK/blob/master/tsconfig.json"><strong>tsconfig.json</strong></a></p>
-				<pre><code class="language-json"><span style="color: #000000">...</span>
-<span style="color: #A31515">&quot;scripts&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;watch&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;tsc -p tsconfig.json -w&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #0451A5">&quot;browserify&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;browserify dist/example/counter.js &gt; dist/bundle.js &amp;&amp; browserify dist/example/counter-pi.js &gt; dist/bundle-pi.js&quot;</span>
+				<pre><code class="language-json"><span style="color: #000000">{</span>
+<span style="color: #000000">    </span><span style="color: #0451A5">&quot;scripts&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">        </span><span style="color: #0451A5">&quot;build&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;tsc -p tsconfig.json&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">        </span><span style="color: #0451A5">&quot;build-example&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;browserify -p tsify example/counter-pi.ts | terser -cm --comments false -o dist/bundle-pi.js &amp;&amp; browserify -p tsify example/counter.ts | terser -cm --comments false -o dist/bundle.js&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">        </span><span style="color: #0451A5">&quot;watch&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;start watchify --debug -p tsify example/counter.ts -o dist/bundle.js &amp;&amp; start watchify --debug -p tsify example/counter-pi.ts -o dist/bundle-pi.js&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">        </span><span style="color: #0451A5">&quot;documentation&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;typedoc src/index.ts&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">        </span><span style="color: #0451A5">&quot;test&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;echo </span><span style="color: #EE0000">\&quot;</span><span style="color: #A31515">Error: no test specified</span><span style="color: #EE0000">\&quot;</span><span style="color: #A31515"> &amp;&amp; exit 1&quot;</span>
+<span style="color: #000000">    }</span>
 <span style="color: #000000">}</span>
-<span style="color: #000000">...</span>
 </code></pre>
 			</div>
 		</div>
