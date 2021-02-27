@@ -1,13 +1,8 @@
-import {SDOnActionEvent} from '../decorators/decorators';
-import {SDOnPiEvent}     from '../index';
-import {
-    DidReceiveGlobalSettingsEvent,
-    InitBase,
-    PossibleEventsToReceive,
-    PossibleEventsToSend
-}                        from '../interfaces/interfaces';
-import {EventManager}    from '../manager/event.manager';
-import {SettingsManager} from '../manager/settings.manager';
+import {SDOnActionEvent}                                         from '../decorators/decorators';
+import {SDOnPiEvent}                                             from '../index';
+import {InitBase, PossibleEventsToReceive, PossibleEventsToSend} from '../interfaces/interfaces';
+import {EventManager}                                            from '../manager/event.manager';
+import {SettingsManager}                                         from '../manager/settings.manager';
 
 /**
  * This is the base class for all Stream Deck handlers
@@ -116,6 +111,18 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
      */
     public get globalSettings(): any {
         return this._globalSettings;
+    }
+
+    public get documentReady(): boolean {
+        return this._documentReady;
+    }
+
+    public get connectionReady(): boolean {
+        return this._connectionReady;
+    }
+
+    public get globalSettingsReady(): boolean {
+        return this._globalSettingsReady;
     }
 
     /**
@@ -386,7 +393,6 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
             this._handleReadyState();
         } else if (eventData.context && eventData.payload?.settings)
             this.settingsManager.cacheContextSettings(eventData.context, eventData.payload.settings);
-
 
         this._eventManager.callEvents(event, eventData.action ?? '*', eventData);
     }
