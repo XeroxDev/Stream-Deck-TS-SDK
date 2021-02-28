@@ -29,7 +29,7 @@
     "build": "tsc -p tsconfig.json",
     "build-example": "browserify -p tsify example/counter-pi.ts | terser -cm --comments false -o dist/bundle-pi.js && browserify -p tsify example/counter.ts | terser -cm --comments false -o dist/bundle.js",
     "watch": "start watchify --debug -p tsify example/counter.ts -o dist/bundle.js && start watchify --debug -p tsify example/counter-pi.ts -o dist/bundle-pi.js",
-    "release": "standard-version -s",
+    "release": "standard-version -s -a --no-verify",
     "documentation": "typedoc src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
