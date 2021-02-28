@@ -31,10 +31,7 @@
     "watch": "start watchify --debug -p tsify example/counter.ts -o dist/bundle.js && start watchify --debug -p tsify example/counter-pi.ts -o dist/bundle-pi.js",
     "release": "standard-version -s",
     "documentation": "typedoc src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "husky install",
-    "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "husky": {
     "hooks": {
@@ -47,7 +44,7 @@
     "@commitlint/config-conventional": "^12.0.1",
     "@tsconfig/recommended": "^1.0.1",
     "browserify": "^17.0.0",
-    "husky": "^5.1.1",
+    "husky": "^3.1.0",
     "pinst": "^2.1.6",
     "standard-version": "^9.1.1",
     "terser": "^5.6.0",
