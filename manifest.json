@@ -38,5 +38,6 @@
     }
   ],
   "CodePath": "plugin.html",
-  "PropertyInspectorPath": "property-inspector.html"
+  "PropertyInspectorPath": "property-inspector.html",
+  "version": "3.0.0"
 }

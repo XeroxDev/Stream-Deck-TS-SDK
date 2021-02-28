@@ -55,7 +55,7 @@
   },
   "standard-version": {
     "scripts": {
-      "postbump": "npm run documentation && git add . && git commit -m 'docs: updated to newest version'"
+      "postbump": "npm run documentation && git add docs && git commit -m \"docs: updated to newest version\""
     }
   }
 }
