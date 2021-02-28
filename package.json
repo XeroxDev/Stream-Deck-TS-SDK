@@ -35,6 +35,8 @@
   },
   "private": false,
   "devDependencies": {
+    "@commitlint/cli": "^12.0.1",
+    "@commitlint/config-conventional": "^12.0.1",
     "@tsconfig/recommended": "^1.0.1",
     "browserify": "^17.0.0",
     "standard-version": "^9.1.1",

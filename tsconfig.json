@@ -6,7 +6,7 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "declaration": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
     "strictPropertyInitialization": false,
     "skipLibCheck": true,
