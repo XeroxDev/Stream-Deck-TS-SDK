@@ -8,9 +8,8 @@
   "Category": "Test Plugin",
   "CategoryIcon": "icons/category-icon",
   "SDKVersion": 2,
-  "Software":
-  {
-    "MinimumVersion" : "4.9"
+  "Software": {
+    "MinimumVersion": "4.9"
   },
   "OS": [
     {
@@ -23,21 +22,22 @@
     }
   ],
   "Actions": [
-  {
-    "Icon": "icons/actionIcon",
-    "Name": "Counter",
-    "States": [
-      {
-        "Image": "icons/actionDefaultImage",
-        "TitleAlignment": "middle",
-        "FontSize": "16"
-      }
-    ],
-    "SupportedInMultiActions": false,
-    "Tooltip": "How many times did you get pwned today? Keep track with this counter.",
-    "UUID": "fun.shiro.counter.action"
-  }
-],
+    {
+      "Icon": "icons/actionIcon",
+      "Name": "Counter",
+      "States": [
+        {
+          "Image": "icons/actionDefaultImage",
+          "TitleAlignment": "middle",
+          "FontSize": "16"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "How many times did you get pwned today? Keep track with this counter.",
+      "UUID": "fun.shiro.counter.action"
+    }
+  ],
   "CodePath": "plugin.html",
-  "PropertyInspectorPath": "property-inspector.html"
+  "PropertyInspectorPath": "property-inspector.html",
+  "version": "3.0.0"
 }

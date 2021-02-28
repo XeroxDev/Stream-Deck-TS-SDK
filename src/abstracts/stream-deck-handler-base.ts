@@ -1,5 +1,3 @@
-import {SDOnActionEvent}                                         from '../decorators/decorators';
-import {SDOnPiEvent}                                             from '../index';
 import {InitBase, PossibleEventsToReceive, PossibleEventsToSend} from '../interfaces/interfaces';
 import {EventManager}                                            from '../manager/event.manager';
 import {SettingsManager}                                         from '../manager/settings.manager';
@@ -30,7 +28,6 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
     private _ws: WebSocket;
     private _eventManager: EventManager;
     private readonly _settingsManager: SettingsManager;
-    private _globalSettings: GlobalSettings | {} = {};
     private _cachedEvents: any[] = [];
 
     protected constructor() {
@@ -53,7 +50,6 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
             this._registerEvent = registerEvent;
             this._info = JSON.parse(info);
             if (actionInfo) {
-                this.registerPi(actionInfo);
                 this._eventManager.callEvents('registerPi', '*', actionInfo);
             }
 
@@ -103,14 +99,6 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
      */
     public get settingsManager(): SettingsManager {
         return this._settingsManager;
-    }
-
-    /**
-     * @deprecated
-     * @returns {any}
-     */
-    public get globalSettings(): any {
-        return this._globalSettings;
     }
 
     public get documentReady(): boolean {
@@ -220,80 +208,6 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
     }
 
     /**
-     * @protected
-     * @deprecated
-     * use {@link SDOnPiEvent} instead
-     *
-     * @example
-     * ```typescript
-     * @SDOnActionEvent('registerPi')
-     * private onRegisterPi(actionInfo: string) {
-     *     // Do something
-     * }
-     * ```
-     */
-    protected registerPi(actionInfo: string) {
-    }
-
-    /**
-     * Gets called after connection is opened.
-     * Please use {@link SDOnPiEvent} or {@link SDOnActionEvent} instead.
-     *
-     * @example
-     * ```typescript
-     * @SDOnActionEvent('connectionOpened')
-     * private onConnectionReady() {
-     *     // Do something
-     * }
-     * ```
-     *
-     * @protected
-     * @deprecated
-     */
-    protected onOpen() {
-
-    }
-
-    /**
-     * Gets called after connection closed
-     *
-     * Please use {@link SDOnPiEvent} or {@link SDOnActionEvent} instead.
-     *
-     * @example
-     * ```typescript
-     * @SDOnActionEvent('connectionOpened')
-     * private onConnectionClosed() {
-     *     // Do something
-     * }
-     * ```
-     *
-     * @protected
-     * @deprecated
-     */
-    protected onClose() {
-
-    }
-
-    /**
-     * Gets called after everything is ready
-     *
-     * Please use {@link SDOnPiEvent} or {@link SDOnActionEvent} instead.
-     *
-     * @example
-     * ```typescript
-     * @SDOnActionEvent('setupReady')
-     * private onSetupReady() {
-     *     // Do something
-     * }
-     * ```
-     *
-     * @protected
-     * @deprecated
-     */
-    protected onReady() {
-    }
-
-    /**
      * Checks if dom ist ready
      * @param {() => void} fn
      * @private
@@ -317,7 +231,6 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
 
         this._ws.onopen = () => this._open();
         this._ws.onclose = () => {
-            this.onClose();
             this._eventManager.callEvents('connectionClosed');
         };
         this._ws.onmessage = ev => this._eventHandler(ev);
@@ -352,7 +265,6 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
     private _handleReadyState() {
         if (this._connectionReady && !this._connectionReadyInvoked) {
             this._connectionReadyInvoked = true;
-            this.onOpen();
             this._eventManager.callEvents('connectionOpened');
         }
 
@@ -368,7 +280,6 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
 
         if (this._globalSettingsInvoked && this._documentReadyInvoked && this._connectionReadyInvoked && !this._onReadyInvoked) {
             this._onReadyInvoked = true;
-            this.onReady();
             this._eventManager.callEvents('setupReady');
         }
     }
@@ -388,7 +299,6 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
 
         if (event === 'didReceiveGlobalSettings') {
             this.settingsManager.cacheGlobalSettings(eventData.payload.settings);
-            this._globalSettings = eventData.payload.settings;
             this._globalSettingsReady = true;
             this._handleReadyState();
         } else if (eventData.context && eventData.payload?.settings)

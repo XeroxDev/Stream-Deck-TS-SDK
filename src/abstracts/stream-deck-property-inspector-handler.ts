@@ -9,21 +9,7 @@ import {StreamDeckHandlerBase}           from './stream-deck-handler-base';
  * @copyright 2021
  */
 export abstract class StreamDeckPropertyInspectorHandler<Settings = any, GlobalSettings = any> extends StreamDeckHandlerBase<GlobalSettings> {
-    /**
-     * @deprecated
-     * @type {{} | Settings}
-     * @private
-     */
-    private _settings: Settings | {} = {};
     private _actionInfo: InitPi['actionInfo'];
-
-    /**
-     * @deprecated
-     * @returns {any}
-     */
-    get settings(): Settings | any {
-        return this._settings;
-    }
 
     /**
      * Gets the action information
@@ -72,17 +58,6 @@ export abstract class StreamDeckPropertyInspectorHandler<Settings = any, GlobalS
     @SDOnPiEvent('registerPi')
     protected onRegisterPi(actionInfo: string) {
         this._actionInfo = JSON.parse(actionInfo);
-        this._settings = this.actionInfo.payload.settings;
         this.requestSettings();
-    }
-
-    /**
-     *
-     * @param {any} settings
-     * @private
-     */
-    @SDOnPiEvent('didReceiveSettings')
-    private onSettings({payload: {settings}}: DidReceiveSettingsEvent) {
-        this._settings = settings;
     }
 }
