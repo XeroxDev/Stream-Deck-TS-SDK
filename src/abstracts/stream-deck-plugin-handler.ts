@@ -50,6 +50,52 @@ export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends Stre
     }
 
     /**
+     * Sets the action image but instead from file, from URL
+     * @param {string} url
+     * @param {string} context
+     * @param {TargetType} target
+     * @param {StateType} state
+     * @returns {Promise<string>}
+     */
+    public setImageFromUrl(url: string, context: string, target: TargetType = TargetType.BOTH, state?: StateType): Promise<string> {
+        return new Promise((resolve, reject) => {
+            let image = new Image();
+
+            image.onload = () => {
+                let canvas = document.createElement('canvas');
+                canvas.width = image.naturalWidth;
+                canvas.height = image.naturalHeight;
+
+                let ctx = canvas.getContext('2d');
+                if (!ctx) {
+                    reject(new Error('image failed to load'));
+                    return;
+                }
+
+                ctx.drawImage(image, 0, 0);
+
+                image.onload = null;
+                image.onerror = null;
+                (image as any) = null;
+
+                const dataUrl = canvas.toDataURL('image/png');
+
+                this.setImage(dataUrl, context, target, state);
+                resolve(dataUrl);
+            };
+            image.onerror = () => {
+
+                image.onload = null;
+                image.onerror = null;
+                (image as any) = null;
+
+                reject(new Error('image failed to load'));
+            };
+            image.src = url;
+        });
+    }
+
+    /**
      * Shows a alert icon on action
      * @param {string} context
      */
