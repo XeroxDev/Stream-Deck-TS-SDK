@@ -19,14 +19,6 @@ export class SettingsManager {
 
     /**
      * Disables automatic save
-     * @deprecated
-     */
-    public disableAutosave() {
-        this._autoSave = false;
-    }
-
-    /**
-     * Disables automatic save
      */
     public disableAutoSave() {
         this._autoSave = false;
