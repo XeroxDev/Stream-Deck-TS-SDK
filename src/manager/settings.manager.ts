@@ -7,11 +7,13 @@
 import {StreamDeckHandlerBase} from '../abstracts/stream-deck-handler-base';
 
 export class SettingsManager {
+    /** @deprecated */
     private _settings: Map<string, any> = new Map<string, any>();
     private _globalSettings: any = {};
     private _autoSave = true;
     private _autoDebounce = true;
     private globalSettingsTimeoutId: number|undefined;
+    /** @deprecated */
     private contextSettingsTimeoutIds: {[key: string]: number|undefined} = {}
 
     constructor(private _handler: StreamDeckHandlerBase) {
@@ -64,6 +66,9 @@ export class SettingsManager {
 
     /**
      * Gets context settings
+     *
+     * This is deprecated, please use {@link ActionManager}
+     * @deprecated
      * @template Settings your settings interface for autocomplete
      * @param {string} context the context of the action
      * @returns {Settings | undefined}
@@ -74,6 +79,9 @@ export class SettingsManager {
 
     /**
      * Gets **all** context settings
+     *
+     * This is deprecated, please use {@link ActionManager}
+     * @deprecated
      * @template Settings your settings interface for autocomplete
      * @returns {Map<string, Settings>}
      */
@@ -83,6 +91,9 @@ export class SettingsManager {
 
     /**
      * Set context settings
+     *
+     * This is deprecated, please use {@link ActionManager}
+     * @deprecated
      * @param {string} context
      * @param {{}} settings
      * @param {number} ms for the debounce
@@ -96,6 +107,8 @@ export class SettingsManager {
 
     /**
      * Set single or multiple attributes for settings
+     * This is deprecated, please use {@link ActionManager}
+     * @deprecated
      * @param {string} context Single or multiple attributes
      * @param {{}} attributes
      * @param {number} ms for the debounce
@@ -126,6 +139,9 @@ export class SettingsManager {
 
     /**
      * Save context settings
+     *
+     * This is deprecated, please use {@link ActionManager}
+     * @deprecated
      * @param {string | "ALL"} context string for specific action or 'ALL' for all events
      * @param {number} ms for the debounce
      */
@@ -157,6 +173,9 @@ export class SettingsManager {
 
     /**
      * Sets settings without saving it
+     *
+     * This is deprecated, please use {@link ActionManager}
+     * @deprecated
      * @param {string} context
      * @param {{}} settings
      */

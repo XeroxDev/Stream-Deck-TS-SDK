@@ -10,6 +10,7 @@ import {
     StreamDeckPluginHandler,
     StreamDeckPropertyInspectorHandler
 }                                     from './abstracts/abstracts';
+import { StreamDeckActionClass } from './classes/stream-deck-action.class';
 import {SDOnActionEvent, SDOnPiEvent} from './decorators/decorators';
 import {
     AcdData,
@@ -108,5 +109,6 @@ export {
     WillDisappearEvent,
     EventManager,
     SettingsManager,
-    ActionManager
+    ActionManager,
+    StreamDeckActionClass
 };
