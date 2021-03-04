@@ -1,5 +1,8 @@
-import {StateType, TargetType} from '../interfaces/enums';
-import {StreamDeckHandlerBase} from './stream-deck-handler-base';
+import {StreamDeckActionClass}   from '../classes/stream-deck-action.class';
+import {StateType, TargetType}   from '../interfaces/enums';
+import {PossibleEventsToReceive} from '../interfaces/types';
+import {ActionManager}           from '../manager/action.manager';
+import {StreamDeckHandlerBase}   from './stream-deck-handler-base';
 
 /**
  * This will help you create the stream deck action handler
@@ -7,6 +10,17 @@ import {StreamDeckHandlerBase} from './stream-deck-handler-base';
  * @copyright 2021
  */
 export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends StreamDeckHandlerBase<GlobalSettings> {
+    private readonly _actionManager: ActionManager;
+
+    protected constructor() {
+        super();
+        this._actionManager = new ActionManager(this);
+    }
+
+    public get actionManager(): ActionManager {
+        return this._actionManager;
+    }
+
     /**
      * Sets the action title
      * @param {string} title The string the title should be
@@ -148,5 +162,50 @@ export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends Stre
             action: action,
             payload
         });
+    }
+
+    protected _eventHandler(ev: MessageEvent): void {
+        const eventData = JSON.parse(ev.data);
+        const event: PossibleEventsToReceive = eventData.event;
+
+        if (event !== 'didReceiveGlobalSettings' && eventData.context && eventData.payload?.settings)
+            this.settingsManager.cacheContextSettings(eventData.context, eventData.payload.settings);
+
+        let settings, column, isInMultiAction, row, state, userDesiredState, action, context, device;
+        action = eventData?.action;
+        context = eventData?.context;
+        device = eventData?.device;
+        const payload = eventData?.payload;
+        settings = payload?.settings;
+        state = payload?.state;
+        userDesiredState = payload?.userDesiredState;
+        isInMultiAction = payload?.isInMultiAction;
+        column = payload?.coordinates?.column;
+        row = payload?.coordinates?.row;
+
+        const actionClass = this._actionManager.addOrGetAction(context, new StreamDeckActionClass(this));
+
+        if (actionClass) {
+            if (action !== undefined)
+                actionClass.action = action;
+            if (context !== undefined)
+                actionClass.context = context;
+            if (device !== undefined)
+                actionClass.device = device;
+            if (settings !== undefined)
+                actionClass.settings = settings;
+            if (column !== undefined)
+                actionClass.column = column;
+            if (row !== undefined)
+                actionClass.row = row;
+            if (state !== undefined)
+                actionClass.state = state;
+            if (userDesiredState !== undefined)
+                actionClass.userDesiredState = userDesiredState;
+            if (isInMultiAction !== undefined)
+                actionClass.isInMultiAction = isInMultiAction;
+        }
+
+        super._eventHandler(ev);
     }
 }
