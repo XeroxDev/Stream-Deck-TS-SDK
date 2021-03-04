@@ -290,7 +290,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
      * @private
      * @internal
      */
-    private _eventHandler(ev: MessageEvent) {
+    protected _eventHandler(ev: MessageEvent) {
         const eventData = JSON.parse(ev.data);
         const event: PossibleEventsToReceive = eventData.event;
 
@@ -301,8 +301,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
             this.settingsManager.cacheGlobalSettings(eventData.payload.settings);
             this._globalSettingsReady = true;
             this._handleReadyState();
-        } else if (eventData.context && eventData.payload?.settings)
-            this.settingsManager.cacheContextSettings(eventData.context, eventData.payload.settings);
+        }
 
         this._eventManager.callEvents(event, eventData.action ?? '*', eventData);
     }

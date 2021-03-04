@@ -54,6 +54,7 @@ import {
     WillAppearEvent,
     WillDisappearEvent
 }                                     from './interfaces/interfaces';
+import { ActionManager } from './manager/action.manager';
 import { EventManager } from './manager/event.manager';
 import { SettingsManager } from './manager/settings.manager';
 
@@ -106,5 +107,6 @@ export {
     WillAppearEvent,
     WillDisappearEvent,
     EventManager,
-    SettingsManager
+    SettingsManager,
+    ActionManager
 };
