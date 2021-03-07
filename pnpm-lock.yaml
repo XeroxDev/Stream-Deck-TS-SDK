@@ -10,7 +10,6 @@ devDependencies:
   terser: 5.6.0
   tsify: 5.0.2_437a2eb92de04c58989d570e0ae09c26
   typedoc: 0.20.30_typescript@4.2.3
-  typedoc-plugin-markdown: 3.6.0_typedoc@0.20.30
   typescript: 4.2.3
   watchify: 4.0.0
 lockfileVersion: 5.2
@@ -3239,17 +3238,6 @@ packages:
       node: '>= 8'
     resolution:
       integrity: sha512-tyjyDTKy/JLnBSwvhoqd99VIjrP33SdOtwcMD32b+OqnrjZWe8HmZECbfBoacqoxjHd58gfeNw6wA7uvqWFa4w==
-  /typedoc-plugin-markdown/3.6.0_typedoc@0.20.30:
-    dependencies:
-      handlebars: 4.7.7
-      typedoc: 0.20.30_typescript@4.2.3
-    dev: true
-    engines:
-      node: '>= 10.8.0'
-    peerDependencies:
-      typedoc: '>=0.20.0'
-    resolution:
-      integrity: sha512-fg4xby3awJVVxB8TdhHNsZQfiTC5x1XmauVwhKXc6hGeu1bzTnqrkmDT8NCjxfUgw64si8cUX1jBfBjAHthWpQ==
   /typedoc/0.20.30_typescript@4.2.3:
     dependencies:
       colors: 1.4.0
@@ -3489,6 +3477,5 @@ specifiers:
   terser: ^5.6.0
   tsify: ^5.0.2
   typedoc: ^0.20.28
-  typedoc-plugin-markdown: ^3.6.0
   typescript: ^4.1.5
   watchify: ^4.0.0
