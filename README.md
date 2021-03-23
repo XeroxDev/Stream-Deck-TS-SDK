@@ -10,8 +10,8 @@
 [![Issues-pr closed](https://img.shields.io/github/issues-pr-closed/XeroxDev/Stream-Deck-TS-SDK?color=yellow&style=for-the-badge)](https://github.com/XeroxDev/Stream-Deck-TS-SDK/pulls?q=is%3Apr+is%3Aclosed)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare)
 
-![Sonar Quality Gate](https://img.shields.io/sonar/quality_gate/XeroxDev_Stream-Deck-TS-SDK?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)
-![npm](https://img.shields.io/npm/dt/streamdeck-typescript?style=for-the-badge&logo=npm)
+[![Sonar Quality Gate](https://img.shields.io/sonar/quality_gate/XeroxDev_Stream-Deck-TS-SDK?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/dashboard?id=XeroxDev_Stream-Deck-TS-SDK)
+[![npm](https://img.shields.io/npm/dt/streamdeck-typescript?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/streamdeck-typescript)
 
 [![GitHub license](https://img.shields.io/github/license/XeroxDev/Stream-Deck-TS-SDK?style=for-the-badge)](https://github.com/XeroxDev/Stream-Deck-TS-SDK/blob/master/LICENSE)
 [![Awesome Badges](https://img.shields.io/badge/badges-awesome-green?style=for-the-badge)](https://shields.io)
