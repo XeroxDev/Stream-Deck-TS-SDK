@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.1](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.1.0...v3.1.1) (2021-06-01)
+
+
+### Documentation
+
+* add links to npm and sonarcloud ([565cfbc](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/565cfbcd4b321a628f8dad38d881034d81aeb678))
+* update bug_report.md ([64c9afd](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/64c9afd08237ac77335df665d4bc1b6bd6e1e9fd))
+* update feature_request.md ([8a65b9f](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/8a65b9f7cefe44d12b97a879d662fd5b50a741e9))
+* updated to newest version ([7e81c37](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/7e81c375110dc58e183d705e4110839bd5184477))
+
 ## [3.1.0](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.0.0...v3.1.0) (2021-03-04)
 
 
