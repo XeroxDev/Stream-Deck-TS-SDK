@@ -3,8 +3,8 @@
  * @copyright 2021.
  *
  */
-import {StreamDeckPluginHandler} from '../abstracts/stream-deck-plugin-handler';
-import {StateType}               from '../interfaces/enums';
+import { StreamDeckPluginHandler } from '../abstracts/stream-deck-plugin-handler';
+import { StateType } from '../interfaces/enums';
 
 export class StreamDeckActionClass {
     private _autoSave: boolean = true;
@@ -20,8 +20,7 @@ export class StreamDeckActionClass {
     private _state: StateType;
     private _userDesiredState: StateType;
 
-    constructor(private _handler: StreamDeckPluginHandler) {
-    }
+    constructor(private _handler: StreamDeckPluginHandler) {}
 
     /**
      * Sets the settings
@@ -268,11 +267,13 @@ export class StreamDeckActionClass {
      * @param {Settings | object} settings
      * @param {number} ms for the debounce
      */
-    public setSettings<Settings = object>(settings: Settings | object, ms: number = 0) {
+    public setSettings<Settings = object>(
+        settings: Settings | object,
+        ms: number = 0
+    ) {
         this._settings = <object>settings;
 
-        if (this._autoSave)
-            this.saveSettings(ms);
+        if (this._autoSave) this.saveSettings(ms);
     }
 
     /**
@@ -283,9 +284,8 @@ export class StreamDeckActionClass {
     public setSettingsAttributes(attributes: object, ms: number = 0): void {
         const oldSettings = this.getSettings();
         if (oldSettings)
-            this.setSettings({...oldSettings, ...attributes}, ms);
-        else
-            this.setSettings({...attributes}, ms);
+            this.setSettings({ ...oldSettings, ...attributes }, ms);
+        else this.setSettings({ ...attributes }, ms);
     }
 
     /**
@@ -335,7 +335,7 @@ export class StreamDeckActionClass {
             _row,
             _settings,
             _state,
-            _userDesiredState
+            _userDesiredState,
         } = self;
 
         this._action = _action ?? this._action;

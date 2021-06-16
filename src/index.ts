@@ -8,10 +8,10 @@ import {
     StreamDeckAction,
     StreamDeckHandlerBase,
     StreamDeckPluginHandler,
-    StreamDeckPropertyInspectorHandler
-}                                     from './abstracts/abstracts';
+    StreamDeckPropertyInspectorHandler,
+} from './abstracts/abstracts';
 import { StreamDeckActionClass } from './classes/stream-deck-action.class';
-import {SDOnActionEvent, SDOnPiEvent} from './decorators/decorators';
+import { SDOnActionEvent, SDOnPiEvent } from './decorators/decorators';
 import {
     AcdData,
     ApplicationDidLaunchEvent,
@@ -53,8 +53,8 @@ import {
     TitleParameters,
     TitleParametersDidChangeEvent,
     WillAppearEvent,
-    WillDisappearEvent
-}                                     from './interfaces/interfaces';
+    WillDisappearEvent,
+} from './interfaces/interfaces';
 import { ActionManager } from './manager/action.manager';
 import { EventManager } from './manager/event.manager';
 import { SettingsManager } from './manager/settings.manager';
@@ -110,5 +110,5 @@ export {
     EventManager,
     SettingsManager,
     ActionManager,
-    StreamDeckActionClass
+    StreamDeckActionClass,
 };

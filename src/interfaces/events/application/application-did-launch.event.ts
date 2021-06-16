@@ -3,8 +3,8 @@
  * @category Event Data
  */
 export interface ApplicationDidLaunchEvent {
-    event: 'applicationDidLaunch',
+    event: 'applicationDidLaunch';
     payload: {
-        application: 'string'
-    }
+        application: 'string';
+    };
 }

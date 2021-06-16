@@ -4,8 +4,8 @@
  *
  */
 
-import {PossibleEventsForActionToReceive} from '../interfaces/types';
-import {EventManager}                     from '../manager/event.manager';
+import { PossibleEventsForActionToReceive } from '../interfaces/types';
+import { EventManager } from '../manager/event.manager';
 
 /**
  * This is the Event decorator for the action context
@@ -15,7 +15,16 @@ import {EventManager}                     from '../manager/event.manager';
  * @category Decorator
  */
 export function SDOnActionEvent(event: PossibleEventsForActionToReceive): any {
-    return (target: any, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<any>) => {
-        return EventManager.DefaultDecoratorEventListener(event, target, propertyKey, descriptor);
+    return (
+        target: any,
+        propertyKey: string | symbol,
+        descriptor: TypedPropertyDescriptor<any>
+    ) => {
+        return EventManager.DefaultDecoratorEventListener(
+            event,
+            target,
+            propertyKey,
+            descriptor
+        );
     };
 }

@@ -3,8 +3,8 @@
  * @category Event Data
  */
 export interface ApplicationDidTerminateEvent {
-    event: 'applicationDidTerminate',
+    event: 'applicationDidTerminate';
     payload: {
-        application: 'string'
-    }
+        application: 'string';
+    };
 }

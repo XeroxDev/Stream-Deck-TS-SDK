@@ -1,6 +1,10 @@
-import {InitBase, PossibleEventsToReceive, PossibleEventsToSend} from '../interfaces/interfaces';
-import {EventManager}                                            from '../manager/event.manager';
-import {SettingsManager}                                         from '../manager/settings.manager';
+import {
+    InitBase,
+    PossibleEventsToReceive,
+    PossibleEventsToSend,
+} from '../interfaces/interfaces';
+import { EventManager } from '../manager/event.manager';
+import { SettingsManager } from '../manager/settings.manager';
 
 /**
  * This is the base class for all Stream Deck handlers
@@ -35,8 +39,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
         this._eventManager = EventManager.INSTANCE;
 
         if (this._sd_events)
-            for (let event of this._sd_events)
-                event('*', this);
+            for (let event of this._sd_events) event('*', this);
 
         (window as any).connectElgatoStreamDeckSocket = (
             port: string,
@@ -122,7 +125,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
     public setSettings<Settings = any>(settings: Settings, context: string) {
         this.send('setSettings', {
             context: context,
-            payload: settings
+            payload: settings,
         });
     }
 
@@ -132,7 +135,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
      */
     public requestSettings(context: string) {
         this.send('getSettings', {
-            context: context
+            context: context,
         });
     }
 
@@ -144,7 +147,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
     public setGlobalSettings<GlobalSettings = any>(settings: GlobalSettings) {
         this.send('setGlobalSettings', {
             context: this._uuid,
-            payload: settings
+            payload: settings,
         });
     }
 
@@ -153,7 +156,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
      */
     public requestGlobalSettings() {
         this.send('getGlobalSettings', {
-            context: this._uuid
+            context: this._uuid,
         });
     }
 
@@ -163,7 +166,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
      */
     public openUrl(url: string) {
         this.send('openUrl', {
-            payload: {url}
+            payload: { url },
         });
     }
 
@@ -173,7 +176,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
      */
     public logMessage(message: string) {
         this.send('logMessage', {
-            payload: {message}
+            payload: { message },
         });
     }
 
@@ -185,14 +188,12 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
     public send(event: PossibleEventsToSend, data: any) {
         const eventToSend = {
             event,
-            ...data
+            ...data,
         };
 
-        if (this._debug)
-            console.log(`SEND ${event}`, eventToSend, this._ws);
+        if (this._debug) console.log(`SEND ${event}`, eventToSend, this._ws);
 
-        if (this._ws)
-            this._ws.send(JSON.stringify(eventToSend));
+        if (this._ws) this._ws.send(JSON.stringify(eventToSend));
         else {
             if (this._debug)
                 console.error('COULD NOT SEND. CACHING FOR RESEND EVENT');
@@ -214,7 +215,10 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
      * @internal
      */
     private _docReady(fn: () => void) {
-        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        if (
+            document.readyState === 'complete' ||
+            document.readyState === 'interactive'
+        ) {
             setTimeout(() => fn(), 1);
         } else {
             document.addEventListener('DOMContentLoaded', fn);
@@ -233,7 +237,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
         this._ws.onclose = () => {
             this._eventManager.callEvents('connectionClosed');
         };
-        this._ws.onmessage = ev => this._eventHandler(ev);
+        this._ws.onmessage = (ev) => this._eventHandler(ev);
     }
 
     /**
@@ -242,7 +246,7 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
      * @internal
      */
     private _open() {
-        this.send(this._registerEvent, {uuid: this._uuid});
+        this.send(this._registerEvent, { uuid: this._uuid });
 
         if (this._cachedEvents.length >= 1) {
             if (this._debug)
@@ -275,10 +279,19 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
 
         if (this._globalSettingsReady && !this._globalSettingsInvoked) {
             this._globalSettingsInvoked = true;
-            this._eventManager.callEvents('globalSettingsAvailable', '*', this.settingsManager);
+            this._eventManager.callEvents(
+                'globalSettingsAvailable',
+                '*',
+                this.settingsManager
+            );
         }
 
-        if (this._globalSettingsInvoked && this._documentReadyInvoked && this._connectionReadyInvoked && !this._onReadyInvoked) {
+        if (
+            this._globalSettingsInvoked &&
+            this._documentReadyInvoked &&
+            this._connectionReadyInvoked &&
+            !this._onReadyInvoked
+        ) {
             this._onReadyInvoked = true;
             this._eventManager.callEvents('setupReady');
         }
@@ -294,15 +307,20 @@ export abstract class StreamDeckHandlerBase<GlobalSettings = any> {
         const eventData = JSON.parse(ev.data);
         const event: PossibleEventsToReceive = eventData.event;
 
-        if (this._debug)
-            console.log(`RECEIVE ${event}`, eventData, ev);
+        if (this._debug) console.log(`RECEIVE ${event}`, eventData, ev);
 
         if (event === 'didReceiveGlobalSettings') {
-            this.settingsManager.cacheGlobalSettings(eventData.payload.settings);
+            this.settingsManager.cacheGlobalSettings(
+                eventData.payload.settings
+            );
             this._globalSettingsReady = true;
             this._handleReadyState();
         }
 
-        this._eventManager.callEvents(event, eventData.action ?? '*', eventData);
+        this._eventManager.callEvents(
+            event,
+            eventData.action ?? '*',
+            eventData
+        );
     }
 }

@@ -4,8 +4,8 @@
  *
  */
 
-import {IllegalArgumentError}    from '../errors/illegal-argument.error';
-import {PossibleEventsToReceive} from '../interfaces/types';
+import { IllegalArgumentError } from '../errors/illegal-argument.error';
+import { PossibleEventsToReceive } from '../interfaces/types';
 
 /**
  * Singleton class for EventManager
@@ -13,10 +13,12 @@ import {PossibleEventsToReceive} from '../interfaces/types';
  */
 export class EventManager {
     private static _INSTANCE: EventManager;
-    private registeredEvents: Map<string, Function[]> = new Map<string, Function[]>();
+    private registeredEvents: Map<string, Function[]> = new Map<
+        string,
+        Function[]
+    >();
 
-    private constructor() {
-    }
+    private constructor() {}
 
     /**
      * Returns EventManager instance
@@ -25,8 +27,7 @@ export class EventManager {
      * @constructor
      */
     public static get INSTANCE(): EventManager {
-        if (!this._INSTANCE)
-            this._INSTANCE = new EventManager();
+        if (!this._INSTANCE) this._INSTANCE = new EventManager();
         return this._INSTANCE;
     }
 
@@ -40,15 +41,30 @@ export class EventManager {
      * @returns {TypedPropertyDescriptor<any>}
      * @constructor
      */
-    public static DefaultDecoratorEventListener(event: string, target: any, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<any>) {
+    public static DefaultDecoratorEventListener(
+        event: string,
+        target: any,
+        propertyKey: string | symbol,
+        descriptor: TypedPropertyDescriptor<any>
+    ) {
         const eventListener = <T>(actionName: string, instance: T) => {
             if (typeof actionName !== 'string') {
-                throw new IllegalArgumentError(`actionName needs to be of type string but ${typeof actionName} given.`);
+                throw new IllegalArgumentError(
+                    `actionName needs to be of type string but ${typeof actionName} given.`
+                );
             }
-            EventManager.INSTANCE.registerEvent(event, <T>(eventActionName: string | false, ...params: any[]) => {
-                if (!eventActionName || actionName === '*' || eventActionName === '*' || actionName === eventActionName)
-                    descriptor.value.apply(instance, params);
-            });
+            EventManager.INSTANCE.registerEvent(
+                event,
+                <T>(eventActionName: string | false, ...params: any[]) => {
+                    if (
+                        !eventActionName ||
+                        actionName === '*' ||
+                        eventActionName === '*' ||
+                        actionName === eventActionName
+                    )
+                        descriptor.value.apply(instance, params);
+                }
+            );
         };
 
         if (!target._sd_events) {
@@ -79,7 +95,13 @@ export class EventManager {
      * @param {string} actionName
      * @param params
      */
-    public callEvents(eventName: PossibleEventsToReceive, actionName: string = '*', ...params: any[]) {
-        this.registeredEvents.get(eventName)?.forEach(val => val(actionName, ...params));
+    public callEvents(
+        eventName: PossibleEventsToReceive,
+        actionName: string = '*',
+        ...params: any[]
+    ) {
+        this.registeredEvents
+            .get(eventName)
+            ?.forEach((val) => val(actionName, ...params));
     }
 }

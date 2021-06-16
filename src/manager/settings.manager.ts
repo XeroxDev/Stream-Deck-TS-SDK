@@ -4,7 +4,7 @@
  *
  */
 
-import {StreamDeckHandlerBase} from '../abstracts/stream-deck-handler-base';
+import { StreamDeckHandlerBase } from '../abstracts/stream-deck-handler-base';
 
 export class SettingsManager {
     /** @deprecated */
@@ -12,12 +12,12 @@ export class SettingsManager {
     private _globalSettings: any = {};
     private _autoSave = true;
     private _autoDebounce = true;
-    private globalSettingsTimeoutId: number|undefined;
+    private globalSettingsTimeoutId: number | undefined;
     /** @deprecated */
-    private contextSettingsTimeoutIds: {[key: string]: number|undefined} = {}
+    private contextSettingsTimeoutIds: { [key: string]: number | undefined } =
+        {};
 
-    constructor(private _handler: StreamDeckHandlerBase) {
-    }
+    constructor(private _handler: StreamDeckHandlerBase) {}
 
     /**
      * Disables automatic save
@@ -48,11 +48,13 @@ export class SettingsManager {
      * @param {GlobalSettings} settings
      * @param {number} ms for the debounce
      */
-    public setGlobalSettings<GlobalSettings>(settings: GlobalSettings, ms: number = 0) {
+    public setGlobalSettings<GlobalSettings>(
+        settings: GlobalSettings,
+        ms: number = 0
+    ) {
         this._globalSettings = settings;
 
-        if (this._autoSave)
-            this.saveGlobalSettings(ms);
+        if (this._autoSave) this.saveGlobalSettings(ms);
     }
 
     /**
@@ -61,7 +63,10 @@ export class SettingsManager {
      * @param {number} ms for the debounce
      */
     public setGlobalSettingsAttributes(attributes: {}, ms: number = 0) {
-        this.setGlobalSettings({...this.getGlobalSettings<{}>(), ...attributes});
+        this.setGlobalSettings({
+            ...this.getGlobalSettings<{}>(),
+            ...attributes,
+        });
     }
 
     /**
@@ -101,8 +106,7 @@ export class SettingsManager {
     public setContextSettings(context: string, settings: {}, ms: number = 0) {
         this._settings.set(context, settings);
 
-        if (this._autoSave)
-            this.saveContextSettings(context, ms);
+        if (this._autoSave) this.saveContextSettings(context, ms);
     }
 
     /**
@@ -113,12 +117,19 @@ export class SettingsManager {
      * @param {{}} attributes
      * @param {number} ms for the debounce
      */
-    public setContextSettingsAttributes(context: string, attributes: {}, ms: number = 0) {
+    public setContextSettingsAttributes(
+        context: string,
+        attributes: {},
+        ms: number = 0
+    ) {
         const oldSettings = this.getContextSettings<{}>(context);
         if (oldSettings)
-            this.setContextSettings(context, {...oldSettings, ...attributes}, ms);
-        else
-            this.setContextSettings(context, {...attributes}, ms);
+            this.setContextSettings(
+                context,
+                { ...oldSettings, ...attributes },
+                ms
+            );
+        else this.setContextSettings(context, { ...attributes }, ms);
     }
 
     /**
@@ -127,13 +138,13 @@ export class SettingsManager {
      */
     public saveGlobalSettings(ms: number) {
         const fn = () => {
-            this._handler.setGlobalSettings(this._globalSettings)
-        }
+            this._handler.setGlobalSettings(this._globalSettings);
+        };
 
         if (this._autoDebounce) {
-            this.debounceGlobalSettingsCall(fn, ms)
+            this.debounceGlobalSettingsCall(fn, ms);
         } else {
-            fn()
+            fn();
         }
     }
 
@@ -154,12 +165,12 @@ export class SettingsManager {
             } else if (this._settings.get(context)) {
                 this._handler.setSettings(this._settings.get(context), context);
             }
-        }
+        };
 
         if (this._autoDebounce) {
-            this.debounceContextSettingsCall(context, fn, ms)
+            this.debounceContextSettingsCall(context, fn, ms);
         } else {
-            fn()
+            fn();
         }
     }
 
@@ -184,14 +195,18 @@ export class SettingsManager {
     }
 
     private debounceGlobalSettingsCall(fn: Function, ms: number) {
-        clearTimeout(this.globalSettingsTimeoutId)
+        clearTimeout(this.globalSettingsTimeoutId);
 
-        this.globalSettingsTimeoutId = setTimeout(fn, ms)
+        this.globalSettingsTimeoutId = setTimeout(fn, ms);
     }
 
-    private debounceContextSettingsCall(context: string, fn: Function, ms: number) {
-        clearTimeout(this.contextSettingsTimeoutIds[context])
+    private debounceContextSettingsCall(
+        context: string,
+        fn: Function,
+        ms: number
+    ) {
+        clearTimeout(this.contextSettingsTimeoutIds[context]);
 
-        this.contextSettingsTimeoutIds[context] = setTimeout(fn, ms)
+        this.contextSettingsTimeoutIds[context] = setTimeout(fn, ms);
     }
 }

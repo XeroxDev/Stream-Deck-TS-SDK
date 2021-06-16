@@ -2,7 +2,7 @@
  * All possible events to receive
  */
 export type PossibleEventsToReceive =
-    PossibleEventsForAllToReceive
+    | PossibleEventsForAllToReceive
     | PossibleEventsForPiToReceive
     | PossibleEventsForActionToReceive
     | string;
@@ -11,7 +11,7 @@ export type PossibleEventsToReceive =
  * All events available for PI and action to receive
  */
 export type PossibleEventsForAllToReceive =
-    'didReceiveSettings'
+    | 'didReceiveSettings'
     | 'didReceiveGlobalSettings'
     | 'connectionOpened'
     | 'documentLoaded'
@@ -23,7 +23,7 @@ export type PossibleEventsForAllToReceive =
  * All available events only for property inspector to receive
  */
 export type PossibleEventsForPiToReceive =
-    'sendToPropertyInspector'
+    | 'sendToPropertyInspector'
     | 'registerPi'
     | PossibleEventsForAllToReceive;
 
@@ -31,7 +31,7 @@ export type PossibleEventsForPiToReceive =
  * All available events only for action to receive
  */
 export type PossibleEventsForActionToReceive =
-    'keyDown'
+    | 'keyDown'
     | 'keyUp'
     | 'willAppear'
     | 'willDisappear'
@@ -50,7 +50,7 @@ export type PossibleEventsForActionToReceive =
  * All possible events to send
  */
 export type PossibleEventsToSend =
-    PossibleEventsForPiToSend
+    | PossibleEventsForPiToSend
     | PossibleEventsForAllToSend
     | PossibleEventsForActionToSend
     | string;
@@ -59,10 +59,10 @@ export type PossibleEventsToSend =
  * All possible events for PI and action to send
  */
 export type PossibleEventsForAllToSend =
-    'setSettings' |
-    'getSettings' |
-    'setGlobalSettings' |
-    'getGlobalSettings';
+    | 'setSettings'
+    | 'getSettings'
+    | 'setGlobalSettings'
+    | 'getGlobalSettings';
 
 /**
  * All possible events to send for PI
@@ -73,12 +73,12 @@ export type PossibleEventsForPiToSend = 'sendToPlugin';
  * All possible events to send for actions
  */
 export type PossibleEventsForActionToSend =
-    'openUrl' |
-    'logMessage' |
-    'setTitle' |
-    'setImage' |
-    'showAlert' |
-    'showOk' |
-    'setState' |
-    'switchToProfile' |
-    'sendToPropertyInspector';
+    | 'openUrl'
+    | 'logMessage'
+    | 'setTitle'
+    | 'setImage'
+    | 'showAlert'
+    | 'showOk'
+    | 'setState'
+    | 'switchToProfile'
+    | 'sendToPropertyInspector';

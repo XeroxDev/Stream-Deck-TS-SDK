@@ -1,14 +1,16 @@
-
-import {SDOnPiEvent}                     from '../decorators/on-pi-event.decorator';
-import {DidReceiveSettingsEvent, InitPi} from '../interfaces/interfaces';
-import {StreamDeckHandlerBase}           from './stream-deck-handler-base';
+import { SDOnPiEvent } from '../decorators/on-pi-event.decorator';
+import { DidReceiveSettingsEvent, InitPi } from '../interfaces/interfaces';
+import { StreamDeckHandlerBase } from './stream-deck-handler-base';
 
 /**
  * This will help you create the logic for the property inspector.
  * @author XeroxDev <help@xeroxdev.de>
  * @copyright 2021
  */
-export abstract class StreamDeckPropertyInspectorHandler<Settings = any, GlobalSettings = any> extends StreamDeckHandlerBase<GlobalSettings> {
+export abstract class StreamDeckPropertyInspectorHandler<
+    Settings = any,
+    GlobalSettings = any
+> extends StreamDeckHandlerBase<GlobalSettings> {
     private _actionInfo: InitPi['actionInfo'];
 
     /**
@@ -29,7 +31,7 @@ export abstract class StreamDeckPropertyInspectorHandler<Settings = any, GlobalS
         this.send('sendToPlugin', {
             context: this.uuid,
             action: action ? action : this._actionInfo?.action,
-            payload
+            payload,
         });
     }
 

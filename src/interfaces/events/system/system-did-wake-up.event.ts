@@ -3,5 +3,5 @@
  * @category Event Data
  */
 export interface SystemDidWakeUpEvent {
-    event: 'systemDidWakeUp'
+    event: 'systemDidWakeUp';
 }

@@ -13,7 +13,6 @@ export abstract class StreamDeckAction<Plugin, Instance> {
 
     protected constructor(plugin: Plugin, actionName: string) {
         if (this._sd_events)
-            for (let event of this._sd_events)
-                event(actionName, this);
+            for (let event of this._sd_events) event(actionName, this);
     }
 }

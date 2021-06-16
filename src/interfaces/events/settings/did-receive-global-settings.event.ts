@@ -3,8 +3,8 @@
  * @category Event Data
  */
 export interface DidReceiveGlobalSettingsEvent<Settings = any> {
-    event: 'didReceiveGlobalSettings',
+    event: 'didReceiveGlobalSettings';
     payload: {
-        settings: Settings
-    }
+        settings: Settings;
+    };
 }

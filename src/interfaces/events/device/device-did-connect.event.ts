@@ -1,18 +1,18 @@
-import {DeviceType} from '../../enums';
+import { DeviceType } from '../../enums';
 
 /**
  * Data send from the deviceDidConnect event
  * @category Event Data
  */
 export interface DeviceDidConnectEvent {
-    event: 'deviceDidConnect'
-    device: string,
+    event: 'deviceDidConnect';
+    device: string;
     deviceInfo: {
-        name: string,
-        type: DeviceType | number,
+        name: string;
+        type: DeviceType | number;
         size: {
-            columns: number,
-            rows: number
-        }
-    }
+            columns: number;
+            rows: number;
+        };
+    };
 }

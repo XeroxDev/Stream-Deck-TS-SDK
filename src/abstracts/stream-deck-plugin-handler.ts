@@ -1,15 +1,17 @@
-import {StreamDeckActionClass}   from '../classes/stream-deck-action.class';
-import {StateType, TargetType}   from '../interfaces/enums';
-import {PossibleEventsToReceive} from '../interfaces/types';
-import {ActionManager}           from '../manager/action.manager';
-import {StreamDeckHandlerBase}   from './stream-deck-handler-base';
+import { StreamDeckActionClass } from '../classes/stream-deck-action.class';
+import { StateType, TargetType } from '../interfaces/enums';
+import { PossibleEventsToReceive } from '../interfaces/types';
+import { ActionManager } from '../manager/action.manager';
+import { StreamDeckHandlerBase } from './stream-deck-handler-base';
 
 /**
  * This will help you create the stream deck action handler
  * @author XeroxDev <help@xeroxdev.de>
  * @copyright 2021
  */
-export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends StreamDeckHandlerBase<GlobalSettings> {
+export abstract class StreamDeckPluginHandler<
+    GlobalSettings = any
+> extends StreamDeckHandlerBase<GlobalSettings> {
     private readonly _actionManager: ActionManager;
 
     protected constructor() {
@@ -28,16 +30,21 @@ export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends Stre
      * @param {TargetType} target [Optional] Show title only on hardware, software or both (default: Both)
      * @param {StateType} state [Optional] Show title only on ON state or OFF state (default: Both)
      */
-    public setTitle(title: string, context: string, target: TargetType = TargetType.BOTH, state?: StateType) {
+    public setTitle(
+        title: string,
+        context: string,
+        target: TargetType = TargetType.BOTH,
+        state?: StateType
+    ) {
         if (state) {
             this.send('setTitle', {
                 context,
-                payload: {title, target, state}
+                payload: { title, target, state },
             });
         } else {
             this.send('setTitle', {
                 context,
-                payload: {title, target}
+                payload: { title, target },
             });
         }
     }
@@ -49,16 +56,21 @@ export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends Stre
      * @param {TargetType} target [Optional] Show image only on hardware, software or both (default: Both)
      * @param {StateType} state [Optional] Show image only on ON state or OFF state (default: Both)
      */
-    public setImage(image: string, context: string, target: TargetType = TargetType.BOTH, state?: StateType) {
+    public setImage(
+        image: string,
+        context: string,
+        target: TargetType = TargetType.BOTH,
+        state?: StateType
+    ) {
         if (state) {
             this.send('setImage', {
                 context,
-                payload: {image, target, state}
+                payload: { image, target, state },
             });
         } else {
             this.send('setImage', {
                 context,
-                payload: {image, target}
+                payload: { image, target },
             });
         }
     }
@@ -71,7 +83,12 @@ export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends Stre
      * @param {StateType} state
      * @returns {Promise<string>}
      */
-    public setImageFromUrl(url: string, context: string, target: TargetType = TargetType.BOTH, state?: StateType): Promise<string> {
+    public setImageFromUrl(
+        url: string,
+        context: string,
+        target: TargetType = TargetType.BOTH,
+        state?: StateType
+    ): Promise<string> {
         return new Promise((resolve, reject) => {
             let image = new Image();
 
@@ -98,7 +115,6 @@ export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends Stre
                 resolve(dataUrl);
             };
             image.onerror = () => {
-
                 image.onload = null;
                 image.onerror = null;
                 (image as any) = null;
@@ -114,7 +130,7 @@ export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends Stre
      * @param {string} context
      */
     public showAlert(context: string) {
-        this.send('showAlert', {context});
+        this.send('showAlert', { context });
     }
 
     /**
@@ -122,7 +138,7 @@ export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends Stre
      * @param {string} context
      */
     public showOk(context: string) {
-        this.send('showOk', {context});
+        this.send('showOk', { context });
     }
 
     /**
@@ -133,7 +149,7 @@ export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends Stre
     public setState(state: StateType, context: string) {
         this.send('setState', {
             context: context,
-            payload: {state}
+            payload: { state },
         });
     }
 
@@ -146,7 +162,7 @@ export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends Stre
         this.send('switchToProfile', {
             context: this.uuid,
             device: device ? device : this.info.devices[0].id,
-            payload: {profile}
+            payload: { profile },
         });
     }
 
@@ -156,11 +172,15 @@ export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends Stre
      * @param {string} action [Optional] Action context.
      * @param {string} context The context which called it
      */
-    public sendToPropertyInspector(payload: any, action: string, context: string) {
+    public sendToPropertyInspector(
+        payload: any,
+        action: string,
+        context: string
+    ) {
         this.send('sendToPropertyInspector', {
             context,
             action: action,
-            payload
+            payload,
         });
     }
 
@@ -168,10 +188,25 @@ export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends Stre
         const eventData = JSON.parse(ev.data);
         const event: PossibleEventsToReceive = eventData.event;
 
-        if (event !== 'didReceiveGlobalSettings' && eventData.context && eventData.payload?.settings)
-            this.settingsManager.cacheContextSettings(eventData.context, eventData.payload.settings);
+        if (
+            event !== 'didReceiveGlobalSettings' &&
+            eventData.context &&
+            eventData.payload?.settings
+        )
+            this.settingsManager.cacheContextSettings(
+                eventData.context,
+                eventData.payload.settings
+            );
 
-        let settings, column, isInMultiAction, row, state, userDesiredState, action, context, device;
+        let settings,
+            column,
+            isInMultiAction,
+            row,
+            state,
+            userDesiredState,
+            action,
+            context,
+            device;
         action = eventData?.action;
         context = eventData?.context;
         device = eventData?.device;
@@ -183,23 +218,19 @@ export abstract class StreamDeckPluginHandler<GlobalSettings = any> extends Stre
         column = payload?.coordinates?.column;
         row = payload?.coordinates?.row;
 
-        const actionClass = this._actionManager.addOrGetAction(context, new StreamDeckActionClass(this));
+        const actionClass = this._actionManager.addOrGetAction(
+            context,
+            new StreamDeckActionClass(this)
+        );
 
         if (actionClass) {
-            if (action !== undefined)
-                actionClass.action = action;
-            if (context !== undefined)
-                actionClass.context = context;
-            if (device !== undefined)
-                actionClass.device = device;
-            if (settings !== undefined)
-                actionClass.settings = settings;
-            if (column !== undefined)
-                actionClass.column = column;
-            if (row !== undefined)
-                actionClass.row = row;
-            if (state !== undefined)
-                actionClass.state = state;
+            if (action !== undefined) actionClass.action = action;
+            if (context !== undefined) actionClass.context = context;
+            if (device !== undefined) actionClass.device = device;
+            if (settings !== undefined) actionClass.settings = settings;
+            if (column !== undefined) actionClass.column = column;
+            if (row !== undefined) actionClass.row = row;
+            if (state !== undefined) actionClass.state = state;
             if (userDesiredState !== undefined)
                 actionClass.userDesiredState = userDesiredState;
             if (isInMultiAction !== undefined)

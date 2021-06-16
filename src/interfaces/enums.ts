@@ -3,23 +3,23 @@ export enum DeviceType {
     StreamDeckMini,
     StreamDeckXL,
     StreamDeckMobile,
-    CorsairGKeys
+    CorsairGKeys,
 }
 
 export enum TargetType {
     BOTH,
     HARDWARE,
-    SOFTWARE
+    SOFTWARE,
 }
 
 export enum StateType {
     ON,
-    OFF
+    OFF,
 }
 
 export enum EventType {
     ALL,
     PI,
     PLUGIN,
-    NONE
+    NONE,
 }

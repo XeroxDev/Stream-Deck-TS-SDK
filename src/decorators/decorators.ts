@@ -3,10 +3,7 @@
  * Copyright (c) 2021.
  *
  */
-import {SDOnActionEvent} from './on-action-event.decorator';
-import {SDOnPiEvent}     from './on-pi-event.decorator';
+import { SDOnActionEvent } from './on-action-event.decorator';
+import { SDOnPiEvent } from './on-pi-event.decorator';
 
-export {
-    SDOnActionEvent,
-    SDOnPiEvent
-};
+export { SDOnActionEvent, SDOnPiEvent };

@@ -3,6 +3,6 @@
  * @category Event Data
  */
 export interface DeviceDidDisconnectEvent {
-    event: 'deviceDidDisconnect',
-    device: string
+    event: 'deviceDidDisconnect';
+    device: string;
 }

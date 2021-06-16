@@ -1,5 +1,5 @@
 export interface AcdData {
-    action: string,
-    context: string,
-    device: string,
+    action: string;
+    context: string;
+    device: string;
 }

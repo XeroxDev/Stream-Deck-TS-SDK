@@ -3,8 +3,8 @@
  * @category Event Data
  */
 export interface SendToPluginEvent {
-    action: string,
-    event: 'sendToPlugin',
-    context: string,
-    payload: any
+    action: string;
+    event: 'sendToPlugin';
+    context: string;
+    payload: any;
 }
