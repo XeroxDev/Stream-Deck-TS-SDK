@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.3](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.1.2...v3.1.3) (2021-06-16)
+
+
+### Bug Fixes
+
+* global events don't get triggered ([222f7a9](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/222f7a90c7e0bb9c4a0262ca06d4cbfb61791de4)), closes [#15](https://github.com/XeroxDev/Stream-Deck-TS-SDK/issues/15)
+
+
+### Documentation
+
+* updated to newest version ([1c19cd7](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/1c19cd7990e9903f2ae2d47bd49ec42cfa8d47f6))
+
 ### [3.1.2](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.1.1...v3.1.2) (2021-06-01)
 
 
