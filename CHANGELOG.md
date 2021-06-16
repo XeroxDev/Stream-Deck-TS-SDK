@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.4](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.1.3...v3.1.4) (2021-06-16)
+
+
+### Documentation
+
+* updated to newest version ([59fac5c](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/59fac5cc6e1b26e8a168c078699f8f404fae8d6b))
+
 ### [3.1.3](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.1.2...v3.1.3) (2021-06-16)
 
 
