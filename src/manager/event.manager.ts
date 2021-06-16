@@ -46,7 +46,7 @@ export class EventManager {
                 throw new IllegalArgumentError(`actionName needs to be of type string but ${typeof actionName} given.`);
             }
             EventManager.INSTANCE.registerEvent(event, <T>(eventActionName: string | false, ...params: any[]) => {
-                if (!eventActionName || actionName === '*' || actionName === eventActionName)
+                if (!eventActionName || actionName === '*' || eventActionName === '*' || actionName === eventActionName)
                     descriptor.value.apply(instance, params);
             });
         };
