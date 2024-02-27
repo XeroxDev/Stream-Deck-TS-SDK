@@ -239,4 +239,34 @@ export abstract class StreamDeckPluginHandler<
 
         super._eventHandler(ev);
     }
+
+    /**
+     * Sets the action title
+     * @param {string} context The context which called it
+     * @param {any} json
+     */
+    public setFeedback(
+        context: string,
+        payload: any
+    ) {
+        this.send('setFeedback', {
+            context,
+            payload: payload,
+        });
+    }
+
+    /**
+     * Sets the action title
+     * @param {string} context The context which called it
+     * @param {string} layout
+     */
+    public setFeedbackLayout(
+        context: string,
+        layout: string,
+    ) {
+        this.send('setFeedbackLayout', {
+            context,
+            payload: { layout },
+        });
+    }
 }

@@ -27,6 +27,9 @@ import {
 } from './events/init.event';
 import { KeyDownEvent } from './events/keys/key-down.event';
 import { KeyUpEvent } from './events/keys/key-up.event';
+import { DialUpEvent } from './events/dials/dial-up.event';
+import { DialDownEvent } from './events/dials/dial-down.event';
+import { DialRotateEvent } from './events/dials/dial-rotate.event';
 import { TitleParametersDidChangeEvent } from './events/other/title-parameters-did-change.event';
 import { PropertyInspectorDidAppearEvent } from './events/pi/property-inspector-did-appear.event';
 import { PropertyInspectorDidDisappearEvent } from './events/pi/property-inspector-did-disappear.event';
@@ -83,6 +86,9 @@ export {
     TitleParametersDidChangeEvent,
     KeyDownEvent,
     KeyUpEvent,
+    DialUpEvent,
+    DialDownEvent,
+    DialRotateEvent,
     DeviceDidConnectEvent,
     DeviceDidDisconnectEvent,
     ApplicationDidLaunchEvent,

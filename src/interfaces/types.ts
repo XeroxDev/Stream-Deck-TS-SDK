@@ -44,6 +44,9 @@ export type PossibleEventsForActionToReceive =
     | 'propertyInspectorDidAppear'
     | 'propertyInspectorDidDisappear'
     | 'sendToPlugin'
+    | 'dialUp'
+    | 'dialDown'
+    | 'dialRotate'
     | PossibleEventsForAllToReceive;
 
 /**
@@ -81,4 +84,6 @@ export type PossibleEventsForActionToSend =
     | 'showOk'
     | 'setState'
     | 'switchToProfile'
-    | 'sendToPropertyInspector';
+    | 'sendToPropertyInspector'
+    | 'setFeedback'
+    | 'setFeedbackLayout';
