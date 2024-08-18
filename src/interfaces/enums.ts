@@ -4,6 +4,9 @@ export enum DeviceType {
     StreamDeckXL,
     StreamDeckMobile,
     CorsairGKeys,
+    StreamDeckPedal,
+    CorsairVoyager,
+    StreamDeckPlus,
 }
 
 export enum TargetType {
@@ -22,4 +25,9 @@ export enum EventType {
     PI,
     PLUGIN,
     NONE,
+}
+
+export enum ControllerType {
+    Keypad,
+    Encoder,
 }

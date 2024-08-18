@@ -32,6 +32,20 @@
           "FontSize": "16"
         }
       ],
+      "Controllers": ["Keypad", "Encoder"],
+      "DisableAutomaticStates": false,
+      "Encoder": {
+        "background": "backgroundImage",
+        "Icon": "StackAndLayoutImage",
+        "layout": "layoutName",
+        "StackColor": "#AABBCC",
+        "TriggerDescription": {
+          "Rotate": "Describe the rotation",
+          "Push": "Describe the encoder push",
+          "Touch": "Describe the touch",
+          "LongTouch": "Describe the long touch",
+        }
+      },
       "SupportedInMultiActions": false,
       "Tooltip": "How many times did you get pwned today? Keep track with this counter.",
       "UUID": "fun.shiro.counter.action"
