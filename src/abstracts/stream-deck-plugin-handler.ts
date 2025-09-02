@@ -206,7 +206,8 @@ export abstract class StreamDeckPluginHandler<
             userDesiredState,
             action,
             context,
-            device;
+            device,
+            controller;
         action = eventData?.action;
         context = eventData?.context;
         device = eventData?.device;
@@ -217,6 +218,7 @@ export abstract class StreamDeckPluginHandler<
         isInMultiAction = payload?.isInMultiAction;
         column = payload?.coordinates?.column;
         row = payload?.coordinates?.row;
+        controller = payload?.controller;
 
         const actionClass = this._actionManager.addOrGetAction(
             context,
@@ -235,6 +237,7 @@ export abstract class StreamDeckPluginHandler<
                 actionClass.userDesiredState = userDesiredState;
             if (isInMultiAction !== undefined)
                 actionClass.isInMultiAction = isInMultiAction;
+            if (controller !== undefined) actionClass.controller = controller;
         }
 
         super._eventHandler(ev);

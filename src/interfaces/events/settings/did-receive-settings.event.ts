@@ -11,5 +11,6 @@ export interface DidReceiveSettingsEvent<Settings = any> extends AcdData {
         settings: Settings;
         coordinates: Coordinates;
         isInMultiAction: boolean;
+        controller: string;
     };
 }
