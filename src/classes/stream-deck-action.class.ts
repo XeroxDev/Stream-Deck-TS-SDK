@@ -19,6 +19,7 @@ export class StreamDeckActionClass {
     private _isInMultiAction: boolean = false;
     private _state: StateType;
     private _userDesiredState: StateType;
+    private _controller: string;
 
     constructor(private _handler: StreamDeckPluginHandler) {}
 
@@ -201,6 +202,22 @@ export class StreamDeckActionClass {
     }
 
     /**
+     * Sets the controller
+     * @param {string} value
+     */
+    public set controller(value: string) {
+        this._controller = value;
+    }
+
+    /**
+     * Gets the controller
+     * @returns {string} value
+     */
+    public get controller(): string {
+        return this._controller;
+    }
+
+    /**
      * Disables automatic save
      */
     public disableAutoSave() {
@@ -336,6 +353,7 @@ export class StreamDeckActionClass {
             _settings,
             _state,
             _userDesiredState,
+            _controller
         } = self;
 
         this._action = _action ?? this._action;
@@ -350,5 +368,6 @@ export class StreamDeckActionClass {
         this._settings = _settings ?? this._settings;
         this._state = _state ?? this._state;
         this._userDesiredState = _userDesiredState ?? this._userDesiredState;
+        this._controller = _controller ?? this._controller;
     }
 }

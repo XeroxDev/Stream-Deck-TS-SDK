@@ -13,5 +13,6 @@ export interface WillAppearEvent<Settings = any> extends AcdData {
         coordinates: Coordinates;
         state: StateType;
         isInMultiAction: boolean;
+        controller: string;
     };
 }
