@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.2.1...v3.3.0) (2025-09-04)
+
+
+### Features
+
+* exposed controller to allow for detection if its a key or encoder device ([#21](https://github.com/XeroxDev/Stream-Deck-TS-SDK/issues/21)) ([7284ed1](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/7284ed1c542ad514b3a51708432ec8771f08f93a))
+
+
+### Documentation
+
+* updated to newest version ([50daaa1](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/50daaa1ff219851e0549d5e4e83eb10df481d428))
+
 ### [3.2.1](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.2.0...v3.2.1) (2024-08-18)
 
 
