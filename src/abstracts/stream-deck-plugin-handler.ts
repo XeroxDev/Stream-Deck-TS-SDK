@@ -91,6 +91,7 @@ export abstract class StreamDeckPluginHandler<
     ): Promise<string> {
         return new Promise((resolve, reject) => {
             let image = new Image();
+            image.crossOrigin = "anonymous";
 
             image.onload = () => {
                 let canvas = document.createElement('canvas');
