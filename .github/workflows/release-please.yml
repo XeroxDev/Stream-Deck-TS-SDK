@@ -29,6 +29,8 @@ jobs:
     permissions:
       contents: write
       id-token: write
+    env:
+      NPM_CONFIG_USERCONFIG: /home/runner/.npmrc.empty
     steps:
       - uses: actions/checkout@v4
         with:
@@ -38,7 +40,7 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
-      - run: npm install
+      - run: npm ci
       - run: npm run build
       - run: npm run documentation
       - name: Commit documentation updates
@@ -51,4 +53,12 @@ jobs:
             git commit -m "docs: updated to newest version"
             git push || echo "Failed to push documentation updates"
           fi
-      - run: npm publish --provenance
+      - name: Ensure no npm auth token is set
+        run: |
+          rm -f "$NPM_CONFIG_USERCONFIG"
+          echo "" > "$NPM_CONFIG_USERCONFIG"
+          npm config delete //registry.npmjs.org/:_authToken || true
+          npm config delete //registry.npmjs.org/:_auth || true
+          npm config delete //registry.npmjs.org/:always-auth || true
+      - name: Publish package with provenance
+        run: npm publish --provenance --access public
