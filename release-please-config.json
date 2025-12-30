@@ -2,7 +2,7 @@
   "packages": {
     ".": {
       "release-type": "node",
-      "bootstrap-sha": "3a44ed8e0a626a7eab3cc15602d5f3c6e49f4580",
+      "include-component-in-tag": false,
       "changelog-sections": [
         { "type": "feat", "section": "Features" },
         { "type": "fix", "section": "Bug Fixes" },
