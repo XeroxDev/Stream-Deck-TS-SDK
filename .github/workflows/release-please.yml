@@ -26,6 +26,9 @@ jobs:
     needs: release-please
     if: needs.release-please.outputs.release_created
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -48,6 +51,8 @@ jobs:
             git commit -m "docs: updated to newest version"
             git push || echo "Failed to push documentation updates"
           fi
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Ensure npm uses OIDC
+        run: |
+          npm config delete //registry.npmjs.org/:_authToken || true
+          npm config delete //registry.npmjs.org/:_auth || true
+      - run: npm publish --provenance
