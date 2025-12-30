@@ -12,13 +12,6 @@
         { "type": "style", "hidden": true },
         { "type": "test", "hidden": true },
         { "type": "ci", "hidden": true }
-      ],
-      "extra-files": [
-        {
-          "type": "json",
-          "path": "manifest.json",
-          "jsonpath": "$.version"
-        }
       ]
     }
   }
