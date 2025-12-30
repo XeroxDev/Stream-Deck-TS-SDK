@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [release-please](https://github.com/googleapis/release-please) for commit guidelines.
 
+## [3.3.1](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.3.0...v3.3.1) (2025-12-30)
+
+
+### Bug Fixes
+
+* set image crossOrigin to `anonymous` to avoid CORS restrictions [skip ci] ([a43585e](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/a43585e78cd6cf34c2c1a82d226cc1de498963f6))
+
 ## [3.3.0](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.2.1...v3.3.0) (2025-09-04)
 
 
