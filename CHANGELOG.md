@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [release-please](https://github.com/googleapis/release-please) for commit guidelines.
 
+## [3.3.2](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.3.1...v3.3.2) (2025-12-30)
+
+
+### Bug Fixes
+
+* switch npm publish to OIDC and secure package information ([e4f7aef](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/e4f7aef7dd60587e48ba16ad2b7062abcf880d82))
+
+
+### Documentation
+
+* updated to newest version ([9b3008e](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/9b3008ee7180aeb8c1d749e4587cdc8ec42f983e))
+
 ## [3.3.1](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.3.0...v3.3.1) (2025-12-30)
 
 
