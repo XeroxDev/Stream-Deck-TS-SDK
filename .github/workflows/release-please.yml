@@ -46,7 +46,7 @@ jobs:
           git add docs
           if ! git diff --staged --quiet; then
             git commit -m "docs: updated to newest version"
-            git push
+            git push || echo "Failed to push documentation updates"
           fi
       - run: npm publish
         env:
