@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [release-please](https://github.com/googleapis/release-please) for commit guidelines.
 
 ## [3.3.0](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.2.1...v3.3.0) (2025-09-04)
 

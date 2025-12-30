@@ -230,9 +230,10 @@ and [**tsconfig.json**](https://github.com/XeroxDev/Stream-Deck-TS-SDK/blob/mast
 
 ## How to contribute?
 
-Just fork the repository and create PR's, but we use
-[standard-version](https://github.com/conventional-changelog/standard-version) to optimal release the plugin.
+Just fork the repository and create PR's. This project uses
+[release-please](https://github.com/googleapis/release-please) to automatically manage releases.
 
-standard-version is following the [conventionalcommits](https://www.conventionalcommits.org) specification which follows
-the
-[angular commit guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines)
+release-please follows the [conventionalcommits](https://www.conventionalcommits.org) specification which follows
+the [angular commit guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines).
+
+When commits are merged to the master branch, release-please will automatically create or update a release PR with the appropriate version bump and changelog updates.
