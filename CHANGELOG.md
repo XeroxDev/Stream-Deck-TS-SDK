@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [release-please](https://github.com/googleapis/release-please) for commit guidelines.
 
+## [3.3.4](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.3.3...v3.3.4) (2025-12-30)
+
+
+### Documentation
+
+* updated to newest version ([12acc4e](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/12acc4e6fe4e0dbad156084dea503273b1af24f8))
+
 ## [3.3.3](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.3.2...v3.3.3) (2025-12-30)
 
 
