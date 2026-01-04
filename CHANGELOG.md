@@ -1,6 +1,56 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [release-please](https://github.com/googleapis/release-please) for commit guidelines.
+
+## [3.3.4](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.3.3...v3.3.4) (2025-12-30)
+
+
+### Documentation
+
+* updated to newest version ([12acc4e](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/12acc4e6fe4e0dbad156084dea503273b1af24f8))
+
+## [3.3.3](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.3.2...v3.3.3) (2025-12-30)
+
+
+### Bug Fixes
+
+* isolate npm config for trusted publish ([#37](https://github.com/XeroxDev/Stream-Deck-TS-SDK/issues/37)) ([250df6a](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/250df6a081d0a4710b88aff633b13266a66b983d))
+
+
+### Documentation
+
+* updated to newest version ([1381a66](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/1381a6648c33245ad53e716068e61e9bdd138f01))
+
+## [3.3.2](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.3.1...v3.3.2) (2025-12-30)
+
+
+### Bug Fixes
+
+* switch npm publish to OIDC and secure package information ([e4f7aef](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/e4f7aef7dd60587e48ba16ad2b7062abcf880d82))
+
+
+### Documentation
+
+* updated to newest version ([9b3008e](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/9b3008ee7180aeb8c1d749e4587cdc8ec42f983e))
+
+## [3.3.1](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.3.0...v3.3.1) (2025-12-30)
+
+
+### Bug Fixes
+
+* set image crossOrigin to `anonymous` to avoid CORS restrictions [skip ci] ([a43585e](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/a43585e78cd6cf34c2c1a82d226cc1de498963f6))
+
+## [3.3.0](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.2.1...v3.3.0) (2025-09-04)
+
+
+### Features
+
+* exposed controller to allow for detection if its a key or encoder device ([#21](https://github.com/XeroxDev/Stream-Deck-TS-SDK/issues/21)) ([7284ed1](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/7284ed1c542ad514b3a51708432ec8771f08f93a))
+
+
+### Documentation
+
+* updated to newest version ([50daaa1](https://github.com/XeroxDev/Stream-Deck-TS-SDK/commit/50daaa1ff219851e0549d5e4e83eb10df481d428))
 
 ### [3.2.1](https://github.com/XeroxDev/Stream-Deck-TS-SDK/compare/v3.2.0...v3.2.1) (2024-08-18)
 
