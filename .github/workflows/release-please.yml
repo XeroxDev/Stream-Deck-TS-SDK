@@ -50,7 +50,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add docs
           if ! git diff --staged --quiet; then
-            git commit -m "docs: updated to newest version"
+            git commit -m "chore: build docs"
             git push || echo "Failed to push documentation updates"
           fi
       - name: Ensure no npm auth token is set
